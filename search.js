@@ -1,7 +1,6 @@
 window.onload = addevent;
 document.currentScript.getAttribute('index_name'); //1
 
-
 results ={
     "products":[
         {"name":"John", "link":"lalalal", "img_url": "kakakaka"},
