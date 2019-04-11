@@ -1,5 +1,5 @@
 window.onload = addevent;
-document.currentScript.getAttribute('index_name'); //1
+var index_name = document.currentScript.getAttribute('index_name'); //1
 
 results ={
     "products":[
@@ -8,9 +8,6 @@ results ={
          {"name":"Klaas", "link":"lalalal", "img_url": "kakakaka"}
     ],
     "terms" : [
-        {"name":"Kats", "link":"lalalal", "img_url": "kakakaka"},
-        {"name":"John", "link":"lalalal", "img_url": "kakakaka"},
-        {"name":"Boem", "link":"lalalal", "img_url": "kakakaka"}
     ]
     }
 
@@ -52,7 +49,7 @@ function updateJSON(json) {
 
 function sendSearchApi(value, callback=undefined){
     var req = new XMLHttpRequest();
-    let token = '385eaa8e916ef7b9dfd5566015bc2a'
+    let token = index_name;
     req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n=5'), true);
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
