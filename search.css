@@ -36,10 +36,10 @@
 .search_auto{
    list-style-type: none;
    z-index: 15;
-   top: 42px;
+   top: 0;
    left: 0;
-   position: absolute;
-   width: calc(100% ) ;
+   display: flex;
+   position: relative;
    max-width: 100%;
    padding: 3px;
    background-color: #fbfbfb;

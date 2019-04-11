@@ -78,6 +78,6 @@ function addevent(){
     document.getElementById('formSearch').addEventListener("input", search);//Dit is dus van belang van implementatie
     var searchBox = document.createElement('div'); 
     searchBox.id = "data"; 
-    document.getElementById.appendChild(searchBox);
+    document.getElementById('formSearch').insertAdjacentElement("afterend", searchBox);
     console.log("Jibia is op deze site actief man. SUPER VET!! WAUT PRIVACY DATA PRIVACY DATA TOMATEN!!!!")
 }
