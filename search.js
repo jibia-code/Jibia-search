@@ -1,18 +1,5 @@
 window.onload = addevent;
-
-
-var Params = Params || (function(){
-    var _args = {}; // private
-
-    return {
-        init : function(Args) {
-            _args = Args;
-        },
-        helloWorld : function() {
-            alert('Hello World! -' + _args[0]);
-        }
-    };
-}());
+document.currentScript.getAttribute('index_name'); //1
 
 
 results ={
@@ -79,7 +66,7 @@ function sendSearchApi(value, callback=undefined){
         }
     });
     req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    req.send(data); 
+    req.send(); 
 }
 
 
