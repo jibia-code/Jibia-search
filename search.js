@@ -89,6 +89,6 @@ function search(event) {
 
 
 function addevent(){
-    document.getElementById('searchbar').addEventListener("input", search);//Dit is dus van belang van implementatie
+    document.getElementById('formSearch').addEventListener("input", search);//Dit is dus van belang van implementatie
     console.log("Jibia is op deze site actief man. SUPER VET!! WAUT PRIVACY DATA PRIVACY DATA TOMATEN!!!!")
 }
