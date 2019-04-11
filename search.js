@@ -77,5 +77,8 @@ function search(event) {
 
 function addevent(){
     document.getElementById('formSearch').addEventListener("input", search);//Dit is dus van belang van implementatie
+    var searchBox = document.createElement('div'); 
+    searchBox.id = "data"; 
+    document.getElementById.appendChild(searchBox);
     console.log("Jibia is op deze site actief man. SUPER VET!! WAUT PRIVACY DATA PRIVACY DATA TOMATEN!!!!")
 }
