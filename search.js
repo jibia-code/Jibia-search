@@ -21,11 +21,11 @@ function makeUL(productsarray,termsarray) {
     var list = document.createElement('ul');
     list.className += "search_auto";
     list.id += "autocomplete"
-        results.terms.map(function(name){ 
-            let item = document.createElement('li');
-            item.className += "search_element terms_element";    
-            item.innerHTML = "<a href = '" + name.link + "' class = 'search_link'><img class = 'search_image' src ='" + name.img_url + "'><p class = 'search_title'>" + name.name + "</p> </a>"
-            list.appendChild(item);
+    results.terms.map(function(name){ 
+        let item = document.createElement('li');
+        item.className += 'search_element terms_element';    
+        item.innerHTML = '<a href = \'' + name.link + '\' class = \'search_link\'><p class = \'term_title\'>' + name.name + '</p></a>'
+        list.appendChild(item);
     });
         productsarray.map(function(name){ 
             console.log(name)
