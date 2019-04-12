@@ -13,15 +13,26 @@ results ={
 
 
 function makeUL(productsarray,termsarray) {
-    // Create the list element:
     console.log(productsarray, termsarray)
     var list = document.createElement('ul');
     list.className += "search_auto";
     list.id += "autocomplete"
+
+    /*
     results.terms.map(function(name){ 
+        
         let item = document.createElement('li');
         item.className += 'search_element terms_element';    
         item.innerHTML = '<a href = \'' + name.link + '\' class = \'search_link\'><p class = \'term_title\'>' + name.name + '</p></a>'
+        list.appendChild(item);
+    });*/
+
+    //temp
+    productsarray.map(function(name){ 
+         let item = document.createElement('li');
+        let term = name['word'];
+        item.className += 'search_element terms_element';    
+        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + word  + '\' class = \'search_link\'><p class = \'term_title\'>' + word + '</p></a>'
         list.appendChild(item);
     });
         productsarray.map(function(name){ 
