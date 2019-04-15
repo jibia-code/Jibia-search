@@ -5,9 +5,8 @@ function makeUL(productsarray,termsarray) {
     var list = document.createElement('ul');
     list.className += "search-box";
     list.id += "autocomplete"
-    termsarray.map(function(name){ 
+    termsarray.map(function(term){ 
         let item = document.createElement('li');
-        let term = name;
         item.className += 'search-element term-element';    
         item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term  + '\' class = \'term-link\'><p class = \'term-title\'>' + term + '</p></a>'
         list.appendChild(item);

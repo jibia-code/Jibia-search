@@ -33,6 +33,7 @@
 /*CSS FOR Products */
 .product-title{
    margin: 0;
+   margin-left: 10px;
    padding: 2px;
    text-align: center;
    position: relative;
