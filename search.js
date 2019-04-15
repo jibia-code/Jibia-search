@@ -1,33 +1,11 @@
 window.onload = addevent;
-var index_name = document.currentScript.getAttribute('index_name'); //1
-
-results ={
-    "products":[
-        {"name":"John", "link":"lalalal", "img_url": "kakakaka"},
-         {"name": "Piet", "link":"lalalal", "img_url": "kakakaka"},
-         {"name":"Klaas", "link":"lalalal", "img_url": "kakakaka"}
-    ],
-    "terms" : [
-    ]
-    }
-
+var index_name = document.currentScript.getAttribute('index_name');
 
 function makeUL(productsarray,termsarray) {
     console.log(productsarray, termsarray)
     var list = document.createElement('ul');
     list.className += "search_auto";
     list.id += "autocomplete"
-
-    /*
-    results.terms.map(function(name){ 
-        
-        let item = document.createElement('li');
-        item.className += 'search_element terms_element';    
-        item.innerHTML = '<a href = \'' + name.link + '\' class = \'search_link\'><p class = \'term_title\'>' + name.name + '</p></a>'
-        list.appendChild(item);
-    });*/
-
-    //temp
     productsarray.map(function(name){ 
          let item = document.createElement('li');
         let term = name['word'];
@@ -48,10 +26,9 @@ function makeUL(productsarray,termsarray) {
 
 
 function reloadresults(auto_data){ 
-    console.log(auto_data["result"])
-    var searchBox = document.getElementById('data');//Searchbox is de veld onder de input
-    searchBox.innerHTML = "";  //Dit is niet op een andere manier te doen
-    searchBox.appendChild(makeUL(auto_data["result"], []));
+    var autoCompleteBox = document.getElementById('data');//autoCompleteBox is the field underneed the inputbar
+    autoCompleteBox.innerHTML = ""; 
+    autoCompleteBox.appendChild(makeUL(auto_data["result"], []));
 }
 
 function updateJSON(json) {
@@ -61,7 +38,8 @@ function updateJSON(json) {
 function sendSearchApi(value, callback=undefined){
     var req = new XMLHttpRequest();
     let token = index_name;
-    req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n=5'), true);
+    let numberResponse = 5;
+    req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse), true);
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
             var json = JSON.parse(req.responseText);
@@ -83,9 +61,8 @@ function search(event) {
 
 
 function addevent(){
-    document.getElementById('formSearch').addEventListener("input", search);//Dit is dus van belang van implementatie
-    var searchBox = document.createElement('div'); 
-    searchBox.id = "data"; 
-    document.getElementById('formSearch').appendChild(searchBox);
-    console.log("Jibia is op deze site actief man. SUPER VET!! WAUT PRIVACY DATA PRIVACY DATA TOMATEN!!!!")
+    document.getElementById('formSearch').addEventListener("input", search);//The Eventlistner needs to be 'input'. 
+    var autoCompleteBox = document.createElement('div'); 
+    autoCompleteBox.id = "data"; 
+    document.getElementById('formSearch').appendChild(autoCompleteBox);
 }
