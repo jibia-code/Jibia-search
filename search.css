@@ -21,7 +21,7 @@
    border-bottom: 1px solid #fafafa; 
    text-align: center;
 }
-.search_element:hover{
+.search-element:hover{
    background-color:#eee;
 } 
 .term-element{

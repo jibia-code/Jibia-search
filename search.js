@@ -16,7 +16,7 @@ function makeUL(productsarray,termsarray) {
             let item = document.createElement('li');
             let prod = name["product"]
             item.className += "search-element product-element";    
-            item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'product-link'><img class = 'product-image' src ='" + prod["img_url"] + "'><p class = 'prodcut-title'>" + prod["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
+            item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'product-link'><img class = 'product-image' src ='" + prod["img_url"] + "'><p class = 'product-title'>" + prod["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
             list.appendChild(item);
         }); 
     return list;
