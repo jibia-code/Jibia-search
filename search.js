@@ -10,7 +10,7 @@ function makeUL(productsarray,termsarray) {
          let item = document.createElement('li');
         let term = name['word'];
         item.className += 'search_element terms_element';    
-        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + word  + '\' class = \'search_link\'><p class = \'term_title\'>' + word + '</p></a>'
+        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term  + '\' class = \'search_link\'><p class = \'term_title\'>' + term + '</p></a>'
         list.appendChild(item);
     });
         productsarray.map(function(name){ 
@@ -26,7 +26,7 @@ function makeUL(productsarray,termsarray) {
 
 
 function reloadresults(auto_data){ 
-    var autoCompleteBox = document.getElementById('data');//autoCompleteBox is the field underneed the inputbar
+    var autoCompleteBox = document.getElementById('data');//autoCompleteBox is the field under the inputbar
     autoCompleteBox.innerHTML = ""; 
     autoCompleteBox.appendChild(makeUL(auto_data["result"], []));
 }
