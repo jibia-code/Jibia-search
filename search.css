@@ -4,6 +4,7 @@
    position: absolute;
    max-width: 100%;
    padding: 3px;
+   margin: 0px;
    background-color: #fbfbfb;
    -webkit-box-shadow: 10px 12px 11px -13px rgba(0,0,0,0.27);
    -moz-box-shadow: 10px 12px 11px -13px rgba(0,0,0,0.27);
@@ -24,7 +25,8 @@
    background-color:#eee;
 } 
 .term-element{
-   
+   padding-top: 2px;
+   padding-bottom: 2px;
 }
 
 
@@ -58,6 +60,8 @@
 
 .term-link{
    position: relative;
+   text-decoration: none;
+   color:black;
    text-align: left;
    margin: 0;
    padding: 2px;
