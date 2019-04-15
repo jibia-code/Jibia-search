@@ -1,39 +1,4 @@
-.search_container{
-    width: 280px;
-    position: relative; 
-    display: flex;
-    margin-left: 50px;
-    z-index: 15;
-}
-.search_image{
-   position: relative;
-   width: 50px;
-   padding: 2px;
-}
-.terms_element{
-   color: blue; 
-}
-.search_element{
-   padding: 5px;
-   margin-bottom: 0px;
-   font-size: 0.8em;
-   height: auto;
-   text-decoration: none;
-   color: black;
-   overflow: hidden;
-   border-bottom: 1px solid #fafafa; 
-   text-align: center;
-}
-.search_link{
-   text-decoration: none;
-   color: black;
-   display: flex;
-   align-items: center;
-}
-.search_element:hover{
-   background-color:#eee;
-     } 
-.search_auto{
+.search-box{
    list-style-type: none;
    z-index: 15;
    position: absolute;
@@ -44,15 +9,54 @@
    -moz-box-shadow: 10px 12px 11px -13px rgba(0,0,0,0.27);
    box-shadow: 10px 12px 11px -13px rgba(0,0,0,0.27);
 }
+.search-element{
+   padding: 5px;
+   margin-bottom: 0px;
+   font-size: 0.8em;
+   height: auto;
+   text-decoration: none;
+   color: black;
+   overflow: hidden;
+   border-bottom: 1px solid #fafafa; 
+   text-align: center;
+}
+.search_element:hover{
+   background-color:#eee;
+} 
+.term-element{
+   color: blue; 
+}
 
-.product_title{
+
+/*CSS FOR Products */
+.product-title{
    margin: 0;
    padding: 2px;
    text-align: center;
    position: relative;
 }
+.product-link{
+   text-decoration: none;
+   color: black;
+   display: flex;
+   align-items: center;
+}
+.product-image{
+   position: relative;
+   width: 50px;
+   padding: 2px;
+}
 
-.term_title{
+/*CSS FOR TERM */
+.term-title{
+   position: relative;
+   text-align: left;
+   margin: 0;
+   padding: 2px;
+   font-weight: 600;
+}
+
+.term-link{
    position: relative;
    text-align: left;
    margin: 0;

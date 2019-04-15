@@ -2,23 +2,21 @@ window.onload = addevent;
 var index_name = document.currentScript.getAttribute('index_name');
 
 function makeUL(productsarray,termsarray) {
-    console.log(productsarray, termsarray)
     var list = document.createElement('ul');
-    list.className += "search_auto";
+    list.className += "search-box";
     list.id += "autocomplete"
     productsarray.map(function(name){ 
          let item = document.createElement('li');
         let term = name['word'];
-        item.className += 'search_element terms_element';    
-        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term  + '\' class = \'search_link\'><p class = \'term_title\'>' + term + '</p></a>'
+        item.className += 'search-element term-element';    
+        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term  + '\' class = \'term-link\'><p class = \'term-title\'>' + term + '</p></a>'
         list.appendChild(item);
     });
         productsarray.map(function(name){ 
-            console.log(name)
             let item = document.createElement('li');
             let prod = name["product"]
-            item.className += "search_element product_element";    
-            item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'search_link'><img class = 'search_image' src ='" + prod["img_url"] + "'><p class = 'search_title'>" + prod["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
+            item.className += "search-element product-element";    
+            item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'product-link'><img class = 'product-image' src ='" + prod["img_url"] + "'><p class = 'prodcut-title'>" + prod["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
             list.appendChild(item);
         });
     return list;
