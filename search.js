@@ -1,5 +1,5 @@
 window.onload = addevent;
-var token = document.currentScript.getAttribute('token');
+var AuthToken = document.currentScript.getAttribute('token');
 
 function makeUL(productsarray,termsarray) {
     var list = document.createElement('ul');
@@ -35,6 +35,7 @@ function updateJSON(json) {
 
 function sendSearchApi(value, callback=undefined){
     var req = new XMLHttpRequest();
+    let token = AuthToken
     let numberResponse = 5;
     req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse), true);
     req.addEventListener("readystatechange", function () {
