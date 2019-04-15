@@ -5,9 +5,9 @@ function makeUL(productsarray,termsarray) {
     var list = document.createElement('ul');
     list.className += "search-box";
     list.id += "autocomplete"
-    productsarray.map(function(name){ 
-         let item = document.createElement('li');
-        let term = name['word'];
+    termsarray.map(function(name){ 
+        let item = document.createElement('li');
+        let term = name;
         item.className += 'search-element term-element';    
         item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term  + '\' class = \'term-link\'><p class = \'term-title\'>' + term + '</p></a>'
         list.appendChild(item);
@@ -24,9 +24,10 @@ function makeUL(productsarray,termsarray) {
 
 
 function reloadresults(auto_data){ 
+    console.log(auto_data);
     var autoCompleteBox = document.getElementById('data');//autoCompleteBox is the field under the inputbar
     autoCompleteBox.innerHTML = ""; 
-    autoCompleteBox.appendChild(makeUL(auto_data["result"], []));
+    autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"]));
 }
 
 function updateJSON(json) {
