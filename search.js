@@ -23,7 +23,6 @@ function makeUL(productsarray,termsarray) {
 
 
 function reloadresults(auto_data){ 
-    console.log(auto_data);
     var autoCompleteBox = document.getElementById('data');//autoCompleteBox is the field under the inputbar
     autoCompleteBox.innerHTML = ""; 
     autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"]));
