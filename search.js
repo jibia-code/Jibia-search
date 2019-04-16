@@ -36,7 +36,8 @@ function sendSearchApi(value, callback=undefined){
     var req = new XMLHttpRequest();
     let token = AuthToken
     let numberResponse = 5;
-    req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse), true);
+    let lang = document.documentElement.getAttribute("lang")
+    req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+'&country_code='+lang), true);
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
             var json = JSON.parse(req.responseText);
