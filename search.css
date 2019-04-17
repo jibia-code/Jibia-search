@@ -57,6 +57,9 @@
    margin: 0;
    padding: 2px;
 }
+.term-title b{
+   font-weight: bold !important;
+}
 
 .term-link{
    position: relative;
