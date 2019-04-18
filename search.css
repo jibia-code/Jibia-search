@@ -3,6 +3,8 @@
    z-index: 15;
    position: absolute;
    max-width: 100%;
+   width: 100%; 
+   font-size: inherit;
    padding: 0px;
    margin: 0px;
    background-color: #fbfbfb;
@@ -13,7 +15,6 @@
 .search-element{
    padding: 5px;
    margin-bottom: 0px;
-   font-size: 0.8em;
    height: auto;
    text-decoration: none;
    color: black;
