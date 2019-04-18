@@ -8,12 +8,12 @@ function makeUL(productsarray,termsarray) {
     termsarray.map(function(term){ 
         let item = document.createElement('li');
         item.className += 'search-element term-element';    
-        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term  + '\' class = \'term-link\'><p class = \'term-title\'>' + term + '</p></a>'
+        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term['raw_word']  + '\' class = \'term-link\'><p class = \'term-title\'>' + term["html_word"] + '</p></a>'
         list.appendChild(item);
     });
         productsarray.map(function(name){ 
             let item = document.createElement('li');
-            let prod = name["product"]
+            let prod = name["product"]  
             item.className += "search-element product-element";    
             item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'product-link'><img class = 'product-image' src ='" + prod["img_url"] + "'><p class = 'product-title'>" + prod["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
             list.appendChild(item);
