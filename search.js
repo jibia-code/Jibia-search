@@ -73,8 +73,12 @@ function search(event) {
 
 
 function addevent(){
-    document.getElementsByName('q')[0].addEventListener("input", search);
-    var autoCompleteBox = document.createElement('div'); 
-    autoCompleteBox.id = "data"; 
-    document.getElementsByName('q')[0].appendChild(autoCompleteBox);
+    let searchbars = document.getElementsByName('q');
+	searchbars.forEach(function(searchbar) {
+		searchbar.addEventListener("input", search);
+		let autoCompleteBox = document.createElement('div'); 
+		autoCompleteBox.id = "data"; 
+		document.getElementsByName('q')[0].appendChild(autoCompleteBox);
+		}
+	)
 }
