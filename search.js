@@ -10,6 +10,13 @@ function makeUL(productsarray,termsarray) {
         item.className += 'search-element term-element';    
         item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term['raw_word']  + '\' class = \'term-link\'><p class = \'term-title\'>' + term["html_word"] + '</p></a>'
         list.appendChild(item);
+		item.addEventListener("click", function() {
+			var req = new XMLHttpRequest();
+			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
+			req.setRequestHeader("Content-type", "application/json");
+			var data = JSON.stringify({"origin":window.location,"query": term});
+			req.send(data);
+		})
     });
         productsarray.map(function(name){ 
             let item = document.createElement('li');
@@ -17,6 +24,13 @@ function makeUL(productsarray,termsarray) {
             item.className += "search-element product-element";    
             item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'product-link'><img class = 'product-image' src ='" + prod["img_url"] + "'><p class = 'product-title'>" + prod["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
             list.appendChild(item);
+		item.addEventListener("click", function() {
+			var req = new XMLHttpRequest();
+			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
+			req.setRequestHeader("Content-type", "application/json");
+			var data = JSON.stringify({"origin":window.location,"query": name});
+			req.send(data);
+		})
         }); 
     return list;
 }
@@ -59,7 +73,7 @@ function search(event) {
 
 
 function addevent(){
-    document.getElementById('formSearch').addEventListener("input", search);//The Eventlistner needs to be 'input'. 
+    document.getElementsByName('q')[0].addEventListener("input", search);
     var autoCompleteBox = document.createElement('div'); 
     autoCompleteBox.id = "data"; 
     document.getElementById('formSearch').appendChild(autoCompleteBox);
