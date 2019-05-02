@@ -36,8 +36,8 @@ function makeUL(productsarray,termsarray) {
 }
 
 
-function reloadresults(i, auto_data){ 
-    var autoCompleteBox = document.getElementById('data'+i);//autoCompleteBox is the field under the inputbar
+function reloadresults(auto_data, id){ 
+    var autoCompleteBox = document.getElementById(id);//autoCompleteBox is the field under the inputbar
     autoCompleteBox.innerHTML = ""; 
     autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"]));
 }
@@ -46,7 +46,7 @@ function updateJSON(json) {
     latest_search_results = json
 }
 
-function sendSearchApi(value, callback=undefined){
+function sendSearchApi(value, callback=undefined, id){
     var req = new XMLHttpRequest();
     let token = AuthToken
     let numberResponse = 5;
@@ -56,7 +56,7 @@ function sendSearchApi(value, callback=undefined){
         if (req.readyState === 4) {
             var json = JSON.parse(req.responseText);
             if (callback !== undefined) {
-                callback(json)
+                callback(json, id)
             } else {
                 console.warn("Oi callback undefined ")
             }
@@ -67,8 +67,8 @@ function sendSearchApi(value, callback=undefined){
 }
 
 
-function search(i, event) {
-    sendSearchApi(event.srcElement.value, reloadresults(i));
+function search(event) {
+    sendSearchApi(event.srcElement.value, reloadresults, event.srcElement.firstChild.id);
 }
 
 
@@ -76,7 +76,7 @@ function addevent(){
     let searchbars = document.getElementsByName('q');
 	let i = 0;
 	searchbars.forEach(function(searchbar) {
-		searchbar.addEventListener("input", search(i));
+		searchbar.addEventListener("input", search);
 		let autoCompleteBox = document.createElement('div'); 
 		autoCompleteBox.id = "data"+i; 
 		searchbar.appendChild(autoCompleteBox);
