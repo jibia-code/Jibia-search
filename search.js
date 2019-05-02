@@ -78,7 +78,7 @@ function addevent(){
 		searchbar.addEventListener("input", search);
 		let autoCompleteBox = document.createElement('div'); 
 		autoCompleteBox.id = "data"; 
-		document.getElementsByName('q')[0].appendChild(autoCompleteBox);
+		searchbar.appendChild(autoCompleteBox);
 		}
 	)
 }
