@@ -76,5 +76,5 @@ function addevent(){
     document.getElementsByName('q')[0].addEventListener("input", search);
     var autoCompleteBox = document.createElement('div'); 
     autoCompleteBox.id = "data"; 
-    document.getElementById('formSearch').appendChild(autoCompleteBox);
+    document.getElementsByName('q')[0].appendChild(autoCompleteBox);
 }
