@@ -36,8 +36,8 @@ function makeUL(productsarray,termsarray) {
 }
 
 
-function reloadresults(auto_data){ 
-    var autoCompleteBox = document.getElementById('data');//autoCompleteBox is the field under the inputbar
+function reloadresults(i, auto_data){ 
+    var autoCompleteBox = document.getElementById('data'+i);//autoCompleteBox is the field under the inputbar
     autoCompleteBox.innerHTML = ""; 
     autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"]));
 }
@@ -67,18 +67,20 @@ function sendSearchApi(value, callback=undefined){
 }
 
 
-function search(event) {
-    sendSearchApi(event.srcElement.value, reloadresults);
+function search(i, event) {
+    sendSearchApi(event.srcElement.value, reloadresults(i));
 }
 
 
 function addevent(){
     let searchbars = document.getElementsByName('q');
+	let i = 0;
 	searchbars.forEach(function(searchbar) {
-		searchbar.addEventListener("input", search);
+		searchbar.addEventListener("input", search(i));
 		let autoCompleteBox = document.createElement('div'); 
-		autoCompleteBox.id = "data"; 
+		autoCompleteBox.id = "data"+i; 
 		searchbar.appendChild(autoCompleteBox);
+		i += 1;
 		}
 	)
 }
