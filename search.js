@@ -79,7 +79,7 @@ function addevent(){
 		searchbar.addEventListener("input", search);
 		let autoCompleteBox = document.createElement('div'); 
 		autoCompleteBox.id = "data"+i; 
-		searchbar.appendChild(autoCompleteBox);
+		searchbar.parentNode.insertBefore(autoCompleteBox, searchbar.nextSibling);
 		i += 1;
 		}
 	)
