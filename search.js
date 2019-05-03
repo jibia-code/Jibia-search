@@ -68,7 +68,7 @@ function sendSearchApi(value, callback=undefined, id){
 
 
 function search(event) {
-    sendSearchApi(event.srcElement.value, reloadresults, event.srcElement.firstChild.id);
+    sendSearchApi(event.srcElement.value, reloadresults, event.srcElement.nextSibling.id);
 }
 
 
