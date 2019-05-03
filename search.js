@@ -80,7 +80,7 @@ function addevent(){
 		let autoCompleteBox = document.createElement('div'); 
 		autoCompleteBox.id = "data"+i; 
 		searchbar.parentNode.insertBefore(autoCompleteBox, searchbar.nextSibling);
-		autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
+		autoCompleteBox.style.top = window.getComputedStyle(searchbar,null).getPropertyValue("height");
 		i += 1;
 		}
 	)
