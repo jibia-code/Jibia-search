@@ -79,8 +79,8 @@ function addevent(){
 		searchbar.addEventListener("input", search);
 		let autoCompleteBox = document.createElement('div'); 
 		autoCompleteBox.id = "data"+i; 
-		autoCompleteBox.style.paddingTop = searchbar.clientHeight;
 		searchbar.parentNode.insertBefore(autoCompleteBox, searchbar.nextSibling);
+		autoCompleteBox.style.paddingTop = searchbar.clientHeight;
 		i += 1;
 		}
 	)
