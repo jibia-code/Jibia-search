@@ -88,7 +88,7 @@ function addevent(){
 	
 	let autocompletes = document.getElementsByClassName('autocomplete');
 	autocompletes.forEach(function(autocomplete) {
-		autocomplete.style.display = "none";
+		autocomplete.remove();
 		}
 	)
 }
