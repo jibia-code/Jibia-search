@@ -68,7 +68,7 @@ function sendSearchApi(value, callback=undefined, id){
 
 
 function search(event) {
-    sendSearchApi(event.srcElement.value, reloadresults, event.srcElement.parentNode.lastChild.id);
+    sendSearchApi(event.srcElement.value, reloadresults, event.srcElement.parentNode.parentNode.lastChild.id);
 }
 
 
@@ -79,7 +79,7 @@ function addevent(){
 		searchbar.addEventListener("input", search);
 		let autoCompleteBox = document.createElement('div'); 
 		autoCompleteBox.id = "data"+i; 
-		searchbar.parentNode.appendChild(autoCompleteBox, searchbar.parentNode.nextSibling);
+		searchbar.parentNode.parentNode.appendChild(autoCompleteBox, searchbar.parentNode.nextSibling);
 		//autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
 		//autoCompleteBox.style.widt = window.getComputedStyle(searchbar,null).getPropertyValue("width");
 		i += 1;
