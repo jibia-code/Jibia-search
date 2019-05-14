@@ -72,7 +72,7 @@ function sendSearchApi(value, callback=undefined, id){
 
 function search(event) {
 	let nodeParent = event.srcElement.parentNode;
-	while(nodeParent.tagName != "form"){
+	while(nodeParent.tagName != "FORM"){
 		nodeParent = nodeParent.parentNode;
 	}
 	nodeParent = nodeParent.parentNode;
@@ -88,7 +88,7 @@ function addevent(){
 		let autoCompleteBox = document.createElement('div'); 
 		autoCompleteBox.id = "data"+i; 
 		let nodeParent = searchbar.parentNode;
-		while(nodeParent.tagName != "form"){
+		while(nodeParent.tagName != "FORM"){
 			nodeParent = nodeParent.parentNode;
 		}
 		nodeParent = nodeParent.parentNode;
