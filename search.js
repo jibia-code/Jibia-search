@@ -79,7 +79,6 @@ function search(event) {
     sendSearchApi(event.srcElement.value, reloadresults, nodeParent.lastChild.id);
 }
 
-
 function addevent(){
     let searchbars = document.getElementsByName('q');
 	let i = 0;
@@ -91,10 +90,10 @@ function addevent(){
 		while(nodeParent.tagName != "FORM"){
 			nodeParent = nodeParent.parentNode;
 		}
-		nodeParent = nodeParent.parentNode;
-		nodeParent.appendChild(autoCompleteBox);
+		nodeParentParent = nodeParent.parentNode;
+		nodeParentParent.appendChild(autoCompleteBox);
 		autoCompleteBox.style.position = "relative";
-		autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
+		autoCompleteBox.style.paddingTop = window.getComputedStyle(nodeParent,null).getPropertyValue("height");
 		//autoCompleteBox.style.widt = window.getComputedStyle(searchbar,null).getPropertyValue("width");
 		i += 1;
 		let autocompletes = document.getElementsByClassName('autocomplete');
