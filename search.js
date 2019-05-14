@@ -82,7 +82,12 @@ function addevent(){
 		searchbar.addEventListener("input", search);
 		let autoCompleteBox = document.createElement('div'); 
 		autoCompleteBox.id = "data"+i; 
-		searchbar.parentNode.parentNode.appendChild(autoCompleteBox, searchbar.parentNode.nextSibling);
+		let nodeParent = searchbar.parentNode;
+		while(nodeParent.tagName != "form"){
+			nodeParent = nodeParent.parentNode;
+		}
+		nodeParent = nodeParent.parentNode;
+		nodeParent.appendChild(autoCompleteBox);
 		autoCompleteBox.style.position = "relative";
 		//autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
 		//autoCompleteBox.style.widt = window.getComputedStyle(searchbar,null).getPropertyValue("width");
