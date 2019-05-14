@@ -94,7 +94,7 @@ function addevent(){
 		nodeParent = nodeParent.parentNode;
 		nodeParent.appendChild(autoCompleteBox);
 		autoCompleteBox.style.position = "relative";
-		//autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
+		autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
 		//autoCompleteBox.style.widt = window.getComputedStyle(searchbar,null).getPropertyValue("width");
 		i += 1;
 		let autocompletes = document.getElementsByClassName('autocomplete');
