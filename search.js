@@ -51,6 +51,9 @@ function sendSearchApi(value, callback=undefined, id){
     let token = AuthToken
     let numberResponse = 5;
     let lang = document.documentElement.getAttribute("lang")
+	if(lang == "null"){
+		lang == window.location.pathname.split( '/' )[1];
+	}
     req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+'&country_code='+lang), true);
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
