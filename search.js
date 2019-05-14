@@ -85,4 +85,10 @@ function addevent(){
 		i += 1;
 		}
 	)
+	
+	let autocompletes = document.getElementsByClassName('autocomplete');
+	autocompletes.forEach(function(autocomplete) {
+		autocomplete.style.display = "none";
+		}
+	)
 }
