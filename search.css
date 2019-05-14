@@ -5,8 +5,8 @@
    max-width: 100%;
    width: 100%; 
    font-size: inherit;
-   padding: 0px;
-   margin: 0px;
+   padding: 0px !important;
+   margin: 0px !important;
    background-color: #fbfbfb;
    -webkit-box-shadow: 10px 12px 11px -13px rgba(0,0,0,0.27);
    -moz-box-shadow: 10px 12px 11px -13px rgba(0,0,0,0.27);
@@ -42,7 +42,9 @@
 .product-link{
    text-decoration: none;
    color: black;
-   display: flex;
+   margin: 0px !important;
+   padding: 0px !important;
+   display: flex !important;
    align-items: center;
 }
 .product-image{
