@@ -41,7 +41,7 @@
 }
 .jibia-product-link{
    text-decoration: none;
-   color: black;
+   color: black !important;
    margin: 0px !important;
    padding: 0px !important;
    display: flex !important;
@@ -67,7 +67,7 @@
 .jibia-term-link{
    position: relative;
    text-decoration: none;
-   color:black;
+   color:black !important;
    text-align: left;
    margin: 0;
    padding: 2px;
