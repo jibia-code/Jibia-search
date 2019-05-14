@@ -37,7 +37,7 @@ function makeUL(productsarray,termsarray) {
 
 
 function reloadresults(auto_data, id){ 
-    var autoCompleteBox = document.getElementById(id);//autoCompleteBox is the field under the inputbar
+    var autoCompleteBox = document.getElementById(id);
     autoCompleteBox.innerHTML = ""; 
     autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"]));
 }
@@ -80,6 +80,7 @@ function addevent(){
 		let autoCompleteBox = document.createElement('div'); 
 		autoCompleteBox.id = "data"+i; 
 		searchbar.parentNode.parentNode.appendChild(autoCompleteBox, searchbar.parentNode.nextSibling);
+		autoCompleteBox.style.position = "relative";
 		//autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
 		//autoCompleteBox.style.widt = window.getComputedStyle(searchbar,null).getPropertyValue("width");
 		i += 1;
