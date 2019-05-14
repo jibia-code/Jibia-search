@@ -88,7 +88,7 @@ function addevent(){
 	)
 	
 	let autocompletes = document.getElementsByClassName('autocomplete');
-	for ( let autcomplete of autocompletes) {
+	for ( let autocomplete of autocompletes) {
 		autocomplete.remove();
 		}
 }
