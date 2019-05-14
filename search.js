@@ -84,11 +84,11 @@ function addevent(){
 		//autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
 		//autoCompleteBox.style.widt = window.getComputedStyle(searchbar,null).getPropertyValue("width");
 		i += 1;
+		let autocompletes = document.getElementsByClassName('autocomplete');
+		for ( let autocomplete of autocompletes) {
+			autocomplete.remove();
+			}
 		}
 	)
 	
-	let autocompletes = document.getElementsByClassName('autocomplete');
-	for ( let autocomplete of autocompletes) {
-		autocomplete.remove();
-		}
 }
