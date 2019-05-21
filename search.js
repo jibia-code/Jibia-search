@@ -1,5 +1,6 @@
 window.onload = addevent;
 var AuthToken = document.currentScript.getAttribute('token');
+var ThemeCategory = document.currentScript.getAttribute('theme_category');
 
 function makeUL(productsarray,termsarray) {
     var list = document.createElement('ul');
@@ -93,8 +94,14 @@ function addevent(){
 		nodeParentParent = nodeParent.parentNode;
 		nodeParentParent.appendChild(autoCompleteBox);
 		autoCompleteBox.style.position = "relative";
-		autoCompleteBox.style.paddingTop = window.getComputedStyle(nodeParent,null).getPropertyValue("height");
-		//autoCompleteBox.style.widt = window.getComputedStyle(searchbar,null).getPropertyValue("width");
+		
+		if(theme_category == 1){
+			autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
+		}
+		else if(theme_category == 2){
+			autoCompleteBox.style.paddingTop = window.getComputedStyle(nodeParent,null).getPropertyValue("height");
+		}
+		//autoCompleteBox.style.width = window.getComputedStyle(nodeParent,null).getPropertyValue("width");
 		i += 1;
 		let autocompletes = document.getElementsByClassName('autocomplete');
 		for ( let autocomplete of autocompletes) {
