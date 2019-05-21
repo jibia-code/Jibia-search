@@ -1,6 +1,6 @@
 window.onload = addevent;
 var AuthToken = document.currentScript.getAttribute('token');
-var ThemeCategory = document.currentScript.getAttribute('theme_category');
+var ThemeCategory = 0;
 
 function makeUL(productsarray,termsarray) {
     var list = document.createElement('ul');
