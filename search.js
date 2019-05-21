@@ -27,7 +27,8 @@ function makeUL(productsarray,termsarray) {
             list.appendChild(item);
 		item.addEventListener("click", function() {
 			var req = new XMLHttpRequest();
-			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
+			req.open('POST', decodeURIComponent('http://146.185.174.192/api/search_app_click_analytics'), true);
+			//req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
 			req.setRequestHeader("Content-type", "application/json");
 			var data = JSON.stringify({"origin":window.location,"query": name});
 			req.send(data);
@@ -55,7 +56,8 @@ function sendSearchApi(value, callback=undefined, id){
 	if(lang == null){
 		lang = window.location.pathname.split( '/' )[1];
 	}
-    req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+'&country_code='+lang), true);
+	req.open('GET', decodeURIComponent('http://146.185.174.192/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+'&country_code='+lang), true);
+    //req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+'&country_code='+lang), true);
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
             var json = JSON.parse(req.responseText);
