@@ -85,7 +85,6 @@ function addevent(){
     let searchbars = document.getElementsByName('q');
 	let i = 0;
 	searchbars.forEach(function(searchbar) {
-		searchbar.style.zIndex = 9999;
 		searchbar.addEventListener("input", search);
 		let autoCompleteBox = document.createElement('div'); 
 		autoCompleteBox.id = "data"+i; 
@@ -98,10 +97,10 @@ function addevent(){
 		autoCompleteBox.style.position = "relative";
 		
 		if(ThemeCategory == 1){
-			autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
+			autoCompleteBox.style.marginTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
 		}
 		else if(ThemeCategory == 2){
-			autoCompleteBox.style.paddingTop = window.getComputedStyle(nodeParent,null).getPropertyValue("height");
+			autoCompleteBox.style.marginTop = window.getComputedStyle(nodeParent,null).getPropertyValue("height");
 		}
 		//autoCompleteBox.style.width = window.getComputedStyle(nodeParent,null).getPropertyValue("width");
 		i += 1;
