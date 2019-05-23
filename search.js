@@ -96,10 +96,10 @@ function addevent(){
 		nodeParentParent.appendChild(autoCompleteBox);
 		autoCompleteBox.style.position = "relative";
 		
-		if(theme_category == 1){
+		if(ThemeCategory == 1){
 			autoCompleteBox.style.paddingTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
 		}
-		else if(theme_category == 2){
+		else if(ThemeCategory == 2){
 			autoCompleteBox.style.paddingTop = window.getComputedStyle(nodeParent,null).getPropertyValue("height");
 		}
 		//autoCompleteBox.style.width = window.getComputedStyle(nodeParent,null).getPropertyValue("width");
