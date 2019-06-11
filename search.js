@@ -57,12 +57,11 @@ function sendSearchApi(value, callback=undefined, id){
 	if(lang == null){
 		lang = window.location.pathname.split( '/' )[1];
 	}
-    req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse), true);
+    req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+"&country_code="+lang, true));
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
             var json = JSON.parse(req.responseText);
             if (callback !== undefined) {
-				console.log("2132323:")
                 callback(json, id)
             } else {
                 console.warn("Oi callback undefined ")

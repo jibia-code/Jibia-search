@@ -7,6 +7,7 @@
    background-color: #eee;
    border-radius: 10px;
    display: none;
+   z-index: 999999;
 }
 .center-box{
    position: relative;
