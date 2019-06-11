@@ -74,12 +74,14 @@ function sendSearchApi(value, callback=undefined, id){
 
 
 function search(event) {
+	let searchunit = document.getElementById('searchunit');
 	searchunit.style.display = 'block';
 }
 
 function addevent(){
 	let searchbars = document.getElementsByName('q');
 	let searchunit = document.createElement('div');
+	searchunit.id = "searchunit"
 	searchunit.innerHTML = "<div class = 'center-box'/><input class = 'searchbox'></input></div>"; 
 	document.body.appendChild(searchunit);
 	let i = 0;
