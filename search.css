@@ -1,27 +1,28 @@
 .popup{
    position: fixed;
-   top: 15vh; 
+   top: 15vh;
    width: 50vw;
-   margin-left: 25vw;
+   left: 25vw;
    height: 600px;
    background-color: #eee;
    border-radius: 10px;
    display: none;
 }
 .center-box{
-   margin: 50px;
    position: relative;
-   display: grid;
-   height: 65px;
-   max-width: 100%;
+    display: grid;
+    max-width: 100%;
 }
 .searchbox{
-   padding: 10px;
-    border: solid black 1px;
-    border-radius: 10px;
-    background-color: #FFF;
-    margin-top: 35px;
-    position: relative;
+   padding: 18px;
+   border: solid #aaa 1px;
+   border-radius: 10px 10px 0px 0px;
+   background-color: #fff;
+   position: relative;
+}
+
+.searchbox:focus, input:focus,*:focus {
+   outline: none;
 }
 .jibia-search-box{
    list-style-type: none;

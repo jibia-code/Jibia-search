@@ -94,19 +94,29 @@ function addevent(){
 	document.onclick = function(e){
 		if(e.target.id !=='searchunit'){
 			searchunit.style.display = 'none';
-			searchbars.forEach(function(e){e.value = ''})
+			searchbars.forEach(function(e){
+				e.value = '';
+				if(e.getAttribute("searchbar") == searchunit.getAttribute('s'))
+				{
+					e.focus();
+				}});
+			};
 		}
-	}
 	searchunit.id = "searchunit"
 	searchunit.className = "popup";
 	searchunit.innerHTML = "<div class = 'center-box'/><input id = 'searchbox' class = 'searchbox'></input></div>"; 
-	document.body.appendChild(searchunit);
 	let i = 0;
-	searchbars.forEach(function(searchbar) {
-		searchbar.addEventListener("input", popup);
+	searchbars.forEach(function(e){
+		searchunit.setAttribute("s", i);
+		e.setAttribute("searchbar", i);
+		document.body.appendChild(searchunit);
+		e.addEventListener("input", popup);
+		i = i + 1;
 	});
 	searchunit.addEventListener("input", search);
 	let autoCompleteBox = document.createElement('div'); 
 	autoCompleteBox.id = "data"; 
+	
+	autoCompleteBox.test = "kut"
 	searchunit.appendChild(autoCompleteBox); 
 }
