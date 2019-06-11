@@ -81,7 +81,7 @@ function addevent(){
 	let searchbars = document.getElementsByName('q');
 	let searchunit = document.createElement('div');
 	searchunit.innerHTML = "<div class = 'center-box'/><input class = 'searchbox'></input></div>"; 
-	document.appendChild(searchunit);
+	document.body.appendChild(searchunit);
 	let i = 0;
 	searchbars.forEach(function(searchbar) {
 		searchbar.addEventListener("input", search);
