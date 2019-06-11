@@ -73,10 +73,8 @@ function sendSearchApi(value, callback=undefined, id){
 
 
 function search(event) {
-	let nodeParent = event.srcElement.parentNode;
-	while(nodeParent.tagName != "FORM"){
-		nodeParent = nodeParent.parentNode;
-	}
+	
+}
 	nodeParent = nodeParent.parentNode;
     sendSearchApi(event.srcElement.value, reloadresults, nodeParent.lastChild.id);
 }
