@@ -2,6 +2,7 @@ window.onload = addevent;
 var AuthToken = document.currentScript.getAttribute('token');
 //var ThemeCategory = document.currentScript.getAttribute('theme_category');
 var ThemeCategory = 2;
+var lang = document.currentScript.getAttribute('lang');
 
 function makeUL(productsarray,termsarray) {
     var list = document.createElement('ul');
@@ -53,7 +54,6 @@ function sendSearchApi(value, callback=undefined, id){
     let token = AuthToken
     let numberResponse = 5;
 	let lang = "en";
-	console.log("asdasdasdasda:")
 	if(lang == null){
 		lang = window.location.pathname.split( '/' )[1];
 	}
@@ -79,15 +79,24 @@ function search(event){
 }
 
 function popup(event) {
-	let searchunit = document.getElementById('searchunit');
-	searchunit.style.display = 'block';
-	document.getElementById('searchbox').value = event.srcElement.value;
+	document.getElementById('searchunit').style.display = 'block';
+	let inputfield = document.getElementById('searchbox');
+	inputfield.value = event.srcElement.value;
+	inputfield.focus();
+	//inputfield.select();
 	search(event);
 }
 
 function addevent(){
+	
 	let searchbars = document.getElementsByName('q');
 	let searchunit = document.createElement('div');
+	document.onclick = function(e){
+		if(e.target.id !=='searchunit'){
+			searchunit.style.display = 'none';
+			searchbars.forEach(function(e){e.value = ''})
+		}
+	}
 	searchunit.id = "searchunit"
 	searchunit.className = "popup";
 	searchunit.innerHTML = "<div class = 'center-box'/><input id = 'searchbox' class = 'searchbox'></input></div>"; 
@@ -100,25 +109,4 @@ function addevent(){
 	let autoCompleteBox = document.createElement('div'); 
 	autoCompleteBox.id = "data"; 
 	searchunit.appendChild(autoCompleteBox); 
-		//let nodeParent = searchunit.parentNode;
-		// while(nodeParent.tagName != "FORM"){
-		// 	nodeParent = nodeParent.parentNode;
-		// }
-		// nodeParentParent = nodeParent.parentNode;
-		//nodeParent.appendChild(autoCompleteBox);
-		// autoCompleteBox.style.position = "relative";
-		
-		// if(ThemeCategory == 1){
-		// 	autoCompleteBox.style.marginTop = window.getComputedStyle(searchbar,null).getPropertyValue("height");
-		// }
-		// else if(ThemeCategory == 2){
-		// 	autoCompleteBox.style.marginTop = window.getComputedStyle(nodeParent,null).getPropertyValue("height");
-		// }
-		// //autoCompleteBox.style.width = window.getComputedStyle(nodeParent,null).getPropertyValue("width");
-		// i += 1;
-		// let autocompletes = document.getElementsByClassName('autocomplete');
-		// for ( let autocomplete of autocompletes) {
-		// 	autocomplete.remove();
-		// 	}
-	
 }
