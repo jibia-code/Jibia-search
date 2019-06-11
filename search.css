@@ -9,6 +9,28 @@
    display: none;
    z-index: 999999;
 }
+
+@media (max-width: 1200px){
+   .popup{
+      width: 74vw;
+      left: 13vw;
+      top:10vh; 
+   }
+}
+@media (max-width: 900px){
+   .popup{
+      width: 80vw;
+      left: 10vw;
+      top:10vh; 
+   }
+}
+@media (max-width: 600px){
+   .popup{
+      width: 100vw;
+      left: 0vw;
+      top:10vh; 
+   }
+}
 .center-box{
    position: relative;
     display: grid;
