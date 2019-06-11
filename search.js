@@ -38,8 +38,8 @@ function makeUL(productsarray,termsarray) {
 }
 
 
-function reloadresults(auto_data, id){ 
-    var autoCompleteBox = document.getElementById(id);
+function reloadresults(auto_data){ 
+    var autoCompleteBox = document.getElementById("data");
     autoCompleteBox.innerHTML = ""; 
     autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"]));
 }
@@ -52,15 +52,17 @@ function sendSearchApi(value, callback=undefined, id){
     var req = new XMLHttpRequest();
     let token = AuthToken
     let numberResponse = 5;
-	let lang = document.documentElement.getAttribute("lang")
+	let lang = "en";
+	console.log("asdasdasdasda:")
 	if(lang == null){
 		lang = window.location.pathname.split( '/' )[1];
 	}
-    req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+'&country_code='+lang), true);
+    req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse), true);
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
             var json = JSON.parse(req.responseText);
             if (callback !== undefined) {
+				console.log("2132323:")
                 callback(json, id)
             } else {
                 console.warn("Oi callback undefined ")
@@ -71,24 +73,33 @@ function sendSearchApi(value, callback=undefined, id){
     req.send(); 
 }
 
+function search(event){
+	let searchunit = document.getElementById("searchunit");
+	sendSearchApi(event.srcElement.value, reloadresults, searchunit )
+}
 
-
-function search(event) {
+function popup(event) {
 	let searchunit = document.getElementById('searchunit');
 	searchunit.style.display = 'block';
+	document.getElementById('searchbox').value = event.srcElement.value;
+	search(event);
 }
 
 function addevent(){
 	let searchbars = document.getElementsByName('q');
 	let searchunit = document.createElement('div');
 	searchunit.id = "searchunit"
-	searchunit.innerHTML = "<div class = 'center-box'/><input class = 'searchbox'></input></div>"; 
+	searchunit.className = "popup";
+	searchunit.innerHTML = "<div class = 'center-box'/><input id = 'searchbox' class = 'searchbox'></input></div>"; 
 	document.body.appendChild(searchunit);
 	let i = 0;
 	searchbars.forEach(function(searchbar) {
-		searchbar.addEventListener("input", search);
-		//let autoCompleteBox = document.createElement('div'); 
-		//autoCompleteBox.id = "data"+i; 
+		searchbar.addEventListener("input", popup);
+	});
+	searchunit.addEventListener("input", search);
+	let autoCompleteBox = document.createElement('div'); 
+	autoCompleteBox.id = "data"; 
+	searchunit.appendChild(autoCompleteBox); 
 		//let nodeParent = searchunit.parentNode;
 		// while(nodeParent.tagName != "FORM"){
 		// 	nodeParent = nodeParent.parentNode;
@@ -109,7 +120,5 @@ function addevent(){
 		// for ( let autocomplete of autocompletes) {
 		// 	autocomplete.remove();
 		// 	}
-		}
-	)
 	
 }
