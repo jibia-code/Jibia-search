@@ -21,6 +21,7 @@
    text-decoration: none;
    color: black;
    overflow: hidden;
+   background-color: #fafafa;
    border-bottom: 1px solid #fafafa; 
    text-align: center;
 }
@@ -40,6 +41,7 @@
    padding: 2px;
    text-align: center;
    position: relative;
+   background-color: #fafafa;
 }
 .jibia-product-link{
    text-decoration: none;
@@ -48,6 +50,7 @@
    padding: 0px !important;
    display: flex !important;
    align-items: center;
+   background-color: #fafafa !important;
 }
 .jibia-product-image{
    position: relative;
@@ -71,6 +74,7 @@
    text-decoration: none;
    color:black !important;
    text-align: left;
+   background-color: #fafafa !important;
    margin: 0;
    padding: 2px;
 }
