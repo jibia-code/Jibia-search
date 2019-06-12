@@ -5,7 +5,6 @@
    left: 25vw;
    height: 600px;
    max-height: 85vh;
-   background-color: #eee;
    border-radius: 10px;
    display: none;
    z-index: 999999;
@@ -15,7 +14,7 @@
    .popup{
       width: 74vw;
       left: 13vw;
-      top:10vh; 
+      top:10vh;
       max-height: 90vh;
    }
 }
@@ -23,18 +22,29 @@
    .popup{
       width: 80vw;
       left: 10vw;
-      top:10vh; 
+      top:10vh;
       max-height: 90vh;
    }
 }
 @media (max-width: 600px){
    .popup{
       width: 100vw;
-      left: 0vw; 
-      top:10vh; 
+      left: 0vw;
+      top:10vh;
       max-height: 90vh;
    }
 }
+
+#data {
+    top: 1em;
+    position: relative;
+    border-radius: 1em;
+    background: white;
+    height: 100vh;
+    box-shadow: 2px 3px 10px #D1D1D1;
+    padding: 1em;
+}
+
 .center-box{
    position: relative;
     display: grid;
@@ -42,12 +52,13 @@
 }
 .searchbox{
    padding: 18px;
-   border: solid #aaa 1px;
-   border-radius: 10px 10px 0px 0px;
+   border: solid #707070 0.1px;
+   box-shadow: 2px 3px 10px #D1D1D1;
+   border-radius: 1em;
    background-color: #fff;
    position: relative;
    font-size: inherit;
-   font: inherit; 
+   font: inherit;
 }
 
 .searchbox:focus, input:focus,*:focus {
@@ -60,7 +71,7 @@
    max-width: 100vw;
    opacity: 1;
    visibility: visible;
-   width: 100%; 
+   width: 100%;
    font-size: inherit;
    padding: 0px !important;
    margin: 0px !important;
@@ -78,12 +89,12 @@
    color: black;
    overflow: hidden;
    background-color: #fafafa;
-   border-bottom: 1px solid #fafafa; 
+   border-bottom: 1px solid #fafafa;
    text-align: center;
 }
 .jibia-search-element:hover{
    background-color:#eee;
-} 
+}
 .jibia-term-element{
    padding-top: 2px;
    padding-bottom: 2px;
