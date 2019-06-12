@@ -21,7 +21,6 @@ function makeUL(productsarray,termsarray, categoryarray) {
 			req.send(data);
 		})
 	});
-	console.log(productsarray);
     productsarray.map(function(name){ 
             let item = document.createElement('li');
             let prod = name["product"]  
@@ -36,7 +35,6 @@ function makeUL(productsarray,termsarray, categoryarray) {
 			req.send(data);
 		})
 		});
-	console.log(categoryarray);
 	categoryarray.map(function(name){	 
 		let item = document.createElement('li');
 		let cate = name["category"]  
@@ -58,7 +56,63 @@ function reloadresults(auto_data){
     var autoCompleteBox = document.getElementById("data");
 	autoCompleteBox.innerHTML = ""; 
 	var temp_dict = [{"category" : {name : "citroenen", img_url : "https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg",  }}];
-    autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"], temp_dict));
+	var auto_data = {
+		"ref": "https://www.graceisgreen.com/vrouw/", 
+		"result": {
+		  "products": [
+			{
+			  "product": {
+				"img_url": "https://cdn.webshopapp.com/shops/235598/files/228879149/50x50x2/bambooty-basics-wetbag---alle-kleuren.jpg", 
+				"name": "Bambooty Basics Wetbag in verschillende kleuren", 
+				"url": "bambooty-basics-wetbag"
+			  }
+			}, 
+			{
+			  "product": {
+				"img_url": "https://cdn.webshopapp.com/shops/235598/files/251267771/50x50x2/inlegger-klein-3-2.jpg", 
+				"name": "Bambooty inlegger voor in de wasbare luier - 2 varianten.", 
+				"url": "bamboo-inlegger"
+			  }
+			}, 
+			{
+			  "product": {
+				"img_url": "https://cdn.webshopapp.com/shops/235598/files/211176899/50x50x2/bambooty-zoogcompressen-zakje.jpg", 
+				"name": "Booby wasbare zoogcompressen dag", 
+				"url": "booby-wasbare-zoogcompressen-dag"
+			  }
+			}, 
+			{
+			  "product": {
+				"img_url": "https://cdn.webshopapp.com/shops/235598/files/211177382/50x50x2/zoogcompressen-nacht-wasbaar.jpg", 
+				"name": "Booby wasbare zoogcompressen nacht", 
+				"url": "booby-wasbare-zoogcompressen-nacht"
+			  }
+			}, 
+			{
+			  "product": {
+				"img_url": "https://cdn.webshopapp.com/shops/235598/files/263034773/50x50x2/swim-and-training-whale-hq.png", 
+				"name": "Actie! Zwemluier & Trainingsbroekje Bubble - 2-pak  ", 
+				"url": "zwemluier-trainingsbroekje-bubble"
+			  }
+			}
+		  ], 
+		  "words": [
+			{
+			  "html_word": "<b>B</b>orstvoeding", 
+			  "raw_word": "Borstvoeding"
+			}, 
+			{
+			  "html_word": "<b>B</b>escherming", 
+			  "raw_word": "Bescherming"
+			}, 
+			{
+			  "html_word": "<b>B</b>abydoekjes", 
+			  "raw_word": "Babydoekjes"
+			}
+		  ]
+		}
+	  }
+	autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"], temp_dict));
 }
 
 function updateJSON(json) {
@@ -90,7 +144,8 @@ function sendSearchApi(value, callback=undefined, id){
 
 function search(event){
 	let searchunit = document.getElementById("searchunit");
-	sendSearchApi(event.srcElement.value, reloadresults, searchunit )
+	reloadresults('');
+	//sendSearchApi(event.srcElement.value, reloadresults, searchunit )
 }
 
 function popup(event) {
