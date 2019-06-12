@@ -52,7 +52,7 @@
 }
 .searchbox{
    padding: 18px;
-   border: solid #707070 0.1px;
+   border: none;
    box-shadow: 2px 3px 10px #D1D1D1;
    border-radius: 1em;
    background-color: #fff;
