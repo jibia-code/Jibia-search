@@ -4,7 +4,7 @@ var AuthToken = document.currentScript.getAttribute('token');
 var ThemeCategory = 2;
 var lang = document.currentScript.getAttribute('lang');
 
-function makeUL(productsarray,termsarray) {
+function makeUL(productsarray,termsarray, categoryarray) {
     var list = document.createElement('ul');
     list.className += "jibia-search-box";
     list.id += "jibia-autocomplete"
@@ -20,8 +20,9 @@ function makeUL(productsarray,termsarray) {
 			var data = JSON.stringify({"origin":window.location,"query": term});
 			req.send(data);
 		})
-    });
-        productsarray.map(function(name){ 
+	});
+	console.log(productsarray);
+    productsarray.map(function(name){ 
             let item = document.createElement('li');
             let prod = name["product"]  
             item.className += "jibia-search-element jibia-product-element";    
@@ -34,15 +35,30 @@ function makeUL(productsarray,termsarray) {
 			var data = JSON.stringify({"origin":window.location,"query": name});
 			req.send(data);
 		})
-        }); 
+		});
+	console.log(categoryarray);
+	categoryarray.map(function(name){	 
+		let item = document.createElement('li');
+		let cate = name["category"]  
+		item.className += "jibia-search-element jibia-category-element";    
+		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + cate["name"] + '.html' + "' class = 'jibia-category-link'><img class = 'jibia-category-image' src ='" + cate["img_url"] + "'><p class = 'jibia-category-title'>" + cate["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
+		list.appendChild(item);
+		item.addEventListener("click", function() {
+			var req = new XMLHttpRequest();
+			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
+			req.setRequestHeader("Content-type", "application/json");
+			var data = JSON.stringify({"origin":window.location,"query": name});
+			req.send(data);
+		});
+	});	 
     return list;
 }
 
-
 function reloadresults(auto_data){ 
     var autoCompleteBox = document.getElementById("data");
-    autoCompleteBox.innerHTML = ""; 
-    autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"]));
+	autoCompleteBox.innerHTML = ""; 
+	var temp_dict = [{"category" : {name : "citroenen", img_url : "https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg",  }}];
+    autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"], temp_dict));
 }
 
 function updateJSON(json) {
