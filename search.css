@@ -4,6 +4,7 @@
    width: 50vw;
    left: 25vw;
    height: 600px;
+   max-height: 85vh;
    background-color: #eee;
    border-radius: 10px;
    display: none;
@@ -15,6 +16,7 @@
       width: 74vw;
       left: 13vw;
       top:10vh; 
+      max-height: 90vh;
    }
 }
 @media (max-width: 900px){
@@ -22,13 +24,15 @@
       width: 80vw;
       left: 10vw;
       top:10vh; 
+      max-height: 90vh;
    }
 }
 @media (max-width: 600px){
    .popup{
       width: 100vw;
-      left: 0vw;
+      left: 0vw; 
       top:10vh; 
+      max-height: 90vh;
    }
 }
 .center-box{
@@ -42,6 +46,8 @@
    border-radius: 10px 10px 0px 0px;
    background-color: #fff;
    position: relative;
+   font-size: inherit;
+   font: inherit; 
 }
 
 .searchbox:focus, input:focus,*:focus {
