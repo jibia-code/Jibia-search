@@ -164,6 +164,7 @@ function sendSearchApi(value, callback=undefined, id){
 
 function search(event){
 	let searchunit = document.getElementById("searchunit");
+	console.log('test test');
 	reloadresults('');
 	//sendSearchApi(event.srcElement.value, reloadresults, searchunit )
 }
@@ -177,21 +178,34 @@ function popup(event) {
 	search(event);
 }
 
+function closewindow(searchbars){
+	searchunit.style.display = 'none';
+			searchbars.forEach(function(e){
+				e.value = '';
+				if(e.getAttribute("searchbar") == searchunit.getAttribute('s'))
+				{
+					e.focus();
+				}
+			});
+};
+
+function addbackspaceclose(searchbars, searchunit){
+	document.addEventListener("keyup", function(e){
+		var temp = document.getElementById("searchbox").value;
+		if(e.keyCode == 8 && temp == ''){
+			closewindow(searchbars, searchunit);
+		}
+	});
+}
 function addevent(){
 
 	let searchbars = document.getElementsByName('q');
 	let searchunit = document.createElement('div');
 	document.onclick = function(e){
 		if(e.target.id !=='searchunit'){
-			searchunit.style.display = 'none';
-			searchbars.forEach(function(e){
-				e.value = '';
-				if(e.getAttribute("searchbar") == searchunit.getAttribute('s'))
-				{
-					e.focus();
-				}});
-			};
+			closewindow(searchbars, searchunit);
 		}
+	}
 	searchunit.id = "searchunit"
 	searchunit.className = "popup";
 	searchunit.innerHTML = "<div class = 'center-box'/><i class='fa fa-search searchicon'></i><input id = 'searchbox' class = 'searchbox'></input></div>";
@@ -206,7 +220,8 @@ function addevent(){
 	searchunit.addEventListener("input", search);
 	let autoCompleteBox = document.createElement('div');
 	autoCompleteBox.id = "data";
-
-	autoCompleteBox.test = "kut"
 	searchunit.appendChild(autoCompleteBox);
+
+	//kiezen of we met of zonder backspace delete willen! 
+	addbackspaceclose(searchbars, searchunit);
 }
