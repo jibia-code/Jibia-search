@@ -2,6 +2,9 @@ window.onload = addevent;
 var AuthToken = document.currentScript.getAttribute('token');
 //var ThemeCategory = document.currentScript.getAttribute('theme_category');
 var ThemeCategory = 2;
+var num_cat = document.currentScript.getAttribute('#category');
+var num_prod = document.currentScript.getAttribute('#products');
+var num_term = document.currentScript.getAttribute('#terms');
 var lang = document.currentScript.getAttribute('lang');
 
 function createTitle(string) {
@@ -15,52 +18,12 @@ function createSubtitle(string) {
   subtitleElement.innerHTML = string;
   return subtitleElement;
 }
-
-function makeUL(productsarray,termsarray, categoryarray) {
-    var list = document.createElement('ul');
-    list.className += "jibia-search-box";
-    list.id += "jibia-autocomplete"
-    let termTitle = createTitle("Zoektermen")
-    list.appendChild(termTitle);
-    termsarray.map(function(term){
-        let item = document.createElement('li');
-        item.className += 'jibia-search-element jibia-term-element';
-        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term['raw_word']  + '\' class = \'jibia-term-link\'><p class = \'jibia-term-title\'>' + term["html_word"] + '</p></a>'
-        list.appendChild(item);
-		  item.addEventListener("click", function() {
-			var req = new XMLHttpRequest();
-			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
-			req.setRequestHeader("Content-type", "application/json");
-			var data = JSON.stringify({"origin":window.location,"query": term});
-			req.send(data);
-		})
-	});
-
-  let productTitle = createTitle("Artikelen")
-  list.appendChild(productTitle);
-    productsarray.map(function(name){
-            let item = document.createElement('li');
-            let prod = name["product"]
-            let productCategory = createSubtitle("Babyspullen") //Deze is nog hardcoded
-            item.className += "jibia-search-element jibia-product-element";
-            item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'jibia-product-link'><img class = 'jibia-product-image' src ='" + prod["img_url"] + "'>"+ "<div> <i>" +productCategory.innerHTML +"</i> <p class = 'jibia-product-title'>" + prod["name"] + "</p></a></div>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
-            list.appendChild(item);
-		item.addEventListener("click", function() {
-			var req = new XMLHttpRequeswet();
-			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
-			req.setRequestHeader("Content-type", "application/json");
-			var data = JSON.stringify({"origin":window.location,"query": name});
-			req.send(data);
-		})
-  });
-  let categoryTitle = createTitle("Categoriën")
-  list.appendChild(categoryTitle);
+function add_category(categoryarray, list){
 	categoryarray.map(function(name){
 		let item = document.createElement('li');
 		let cate = name["category"]
 		item.className += "jibia-search-element jibia-category-element";
 		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + cate["name"] + '.html' + "' class = 'jibia-category-link'><img class = 'jibia-category-image' src ='" + cate["img_url"] + "'><p class = 'jibia-category-title'>" + cate["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
-		list.appendChild(item);
 		item.addEventListener("click", function() {
 			var req = new XMLHttpRequest();
 			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
@@ -68,15 +31,77 @@ function makeUL(productsarray,termsarray, categoryarray) {
 			var data = JSON.stringify({"origin":window.location,"query": name});
 			req.send(data);
 		});
+		list.appendChild(item)
 	});
+		return list
+}
+
+function add_terms(termsarray, list){
+    termsarray.map(function(term){
+        let item = document.createElement('li');
+        item.className += 'jibia-search-element jibia-term-element';
+        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term['raw_word']  + '\' class = \'jibia-term-link\'><p class = \'jibia-term-title\'>' + term["html_word"] + '</p></a>'
+		  item.addEventListener("click", function() {
+			var req = new XMLHttpRequest();
+			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
+			req.setRequestHeader("Content-type", "application/json");
+			var data = JSON.stringify({"origin":window.location,"query": term});
+			req.send(data)
+		})
+		list.appendChild(item)
+	});
+	return list
+}
+
+function add_products(productsarray, list){
+	productsarray.map(function(name){
+		let item = document.createElement('li');
+		let prod = name["product"]
+		//let productCategory = createSubtitle("Babyspullen") //Deze is nog hardcoded
+		item.className += "jibia-search-element jibia-product-element";
+		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'jibia-product-link'><img class = 'jibia-product-image' src ='" + prod["img_url"] + "'>"+ "<div> <i>" +"</i> <p class = 'jibia-product-title'>" + prod["name"] + "</p></a></div>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
+		item.addEventListener("click", function() {
+			var req = new XMLHttpRequeswet();
+			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
+			req.setRequestHeader("Content-type", "application/json");
+			var data = JSON.stringify({"origin":window.location,"query": name});
+			req.send(data);
+		})
+		list.appendChild(item)
+	});
+	return list
+}
+
+function makeUL(productsarray,termsarray, categoryarray) {
+    var list = document.createElement('ul');
+    list.className += "jibia-search-box";
+	list.id += "jibia-autocomplete"
+	if(termsarray != undefined){
+		let termTitle = createTitle("Zoektermen")
+		list.appendChild(termTitle);
+		var t = add_terms(termsarray,list);
+		list = t
+	}
+	if(productsarray != undefined){
+		let productTitle = createTitle("Artikelen")
+		list.appendChild(productTitle);
+		var t = add_products(productsarray,list);
+		list = t
+	}
+	if(categoryarray != undefined){
+		let categoryTitle = createTitle("Categoriën")
+		list.appendChild(categoryTitle);
+		var t = add_category(categoryarray,list);
+		list = t
+	}
     return list;
 }
 
 function reloadresults(auto_data){
   var autoCompleteBox = document.getElementById("data");
 	autoCompleteBox.innerHTML = "";
-	var temp_dict = [{"category" : {name : "citroenen", img_url : "https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg",  }}];
-	var auto_data = {
+	//var temp_dict = [{"category" : {name : "citroenen", img_url : "https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg",  }}];
+	/*var auto_data = {
 		"ref": "https://www.graceisgreen.com/vrouw/",
 		"result": {
 		  "products": [
@@ -132,7 +157,8 @@ function reloadresults(auto_data){
 		  ]
 		}
 	  }
-	autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"], temp_dict));
+	  */
+	autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"], auto_data["result"]["category"]));
 }
 
 function updateJSON(json) {
@@ -164,9 +190,8 @@ function sendSearchApi(value, callback=undefined, id){
 
 function search(event){
 	let searchunit = document.getElementById("searchunit");
-	console.log('test test');
-	reloadresults('');
-	//sendSearchApi(event.srcElement.value, reloadresults, searchunit )
+	//reloadresults('');
+	sendSearchApi(event.srcElement.value, reloadresults, searchunit )
 }
 
 function popup(event) {
