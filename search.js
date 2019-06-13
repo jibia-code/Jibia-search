@@ -193,7 +193,6 @@ function addbackspaceclose(searchbars, searchunit){
 	document.addEventListener("keyup", function(e){
 		var temp = document.getElementById("searchbox").value;
 		if(e.keyCode == 8 && temp == ''){
-			console.log("oke")
 			closewindow(searchbars, searchunit);
 		}
 	});
