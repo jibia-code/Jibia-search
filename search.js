@@ -193,7 +193,6 @@ function addbackspaceclose(searchbars, searchunit){
 	document.addEventListener("keyup", function(e){
 		var temp = document.getElementById("searchbox").value;
 		if(e.keyCode == 8 && temp == ''){
-			console.log("oke")
 			closewindow(searchbars, searchunit);
 		}
 	});
@@ -223,6 +222,6 @@ function addevent(){
 	autoCompleteBox.id = "data";
 	searchunit.appendChild(autoCompleteBox);
 
-	//kiezen of we met of zonder backspace delete willen! 
+	//kiezen of we met of zonder backspace delete willen!
 	addbackspaceclose(searchbars, searchunit);
 }
