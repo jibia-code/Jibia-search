@@ -1,21 +1,22 @@
+
 .popup{
    position: fixed;
-   top: 15vh;
+   top: 5vh;
    width: 50vw;
    left: 25vw;
-   height: 600px;
-   max-height: 85vh;
-   background-color: #eee;
+   min-height: 30vw;
+   height: 72vh;
    border-radius: 10px;
    display: none;
    z-index: 999999;
+   font-family:inherit;
 }
 
 @media (max-width: 1200px){
    .popup{
       width: 74vw;
       left: 13vw;
-      top:10vh; 
+      top:5vh;
       max-height: 90vh;
    }
 }
@@ -23,72 +24,126 @@
    .popup{
       width: 80vw;
       left: 10vw;
-      top:10vh; 
+      top:5vh;
       max-height: 90vh;
    }
 }
 @media (max-width: 600px){
    .popup{
-      width: 100vw;
-      left: 0vw; 
-      top:10vh; 
+      width: 90%;
+      margin: 5vw;
+      left: 0;
+      right: 0;
+      top:5vh;
       max-height: 90vh;
    }
 }
+
 .center-box{
-   position: relative;
-    display: grid;
-    max-width: 100%;
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-box i{
+  position: absolute;
+  z-index: 1;
+  right: 1em;
+  color:#808080;
 }
 .searchbox{
-   padding: 18px;
-   border: solid #aaa 1px;
-   border-radius: 10px 10px 0px 0px;
+  color: #808080;
+   border: none;
+   box-shadow: 2px 3px 10px #D1D1D1;
+   border-radius: 1em;
    background-color: #fff;
    position: relative;
    font-size: inherit;
-   font: inherit; 
+   font-family: inherit;
+   width: 100%;
+   height: 2em;
+   padding: 10px;
 }
 
 .searchbox:focus, input:focus,*:focus {
    outline: none;
 }
-.jibia-search-box{
-   list-style-type: none;
-   z-index: 1000;
-   position: absolute;
-   max-width: 100vw;
-   opacity: 1;
-   visibility: visible;
-   width: 100%; 
-   font-size: inherit;
-   padding: 0px !important;
-   margin: 0px !important;
-   background-color: #fbfbfb !important;
-   -webkit-box-shadow: 10px 12px 11px -13px rgba(0,0,0,0.27);
-   -moz-box-shadow: 10px 12px 11px -13px rgba(0,0,0,0.27);
-   box-shadow: 10px 12px 11px -13px rgba(0,0,0,0.27);
+
+.searchicon{
+  padding: 10px;
+  min-width: 10px;
 }
+
+
+.jibia-search-box::-webkit-scrollbar{
+  width: 7px;
+}
+
+.jibia-search-box::-webkit-scrollbar-track {
+  background-color:  white;
+}
+
+.jibia-search-box::-webkit-scrollbar-thumb {
+  background-color: #D1D1D1;
+  border-radius: 5px;
+}
+.jibia-search-box::-webkit-scrollbar-thumb:hover {
+  background-color: #808080;
+}
+
+.jibia-search-box {
+  padding-inline-start: 0px;
+  overflow: scroll;
+  padding: 1em;
+  height: inherit;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  height: fit-content;
+  max-height: 65vh
+}
+
+#data {
+  top: 1em;
+  position: relative;
+  border-radius: 1em;
+  background: white;
+
+  overflow: hidden;
+   -webkit-box-shadow: 2px 3px 10px #D1D1D1;;
+   -moz-box-shadow: 2px 3px 10px #D1D1D1;;
+   box-shadow: 2px 3px 10px #D1D1D1;
+}
+
+.jibia-search-box>p{
+  color: #a7a7a7;
+  font-size: 1rem;
+}
+
 
 .jibia-search-element{
    padding: 5px;
+   margin: .5em;
    margin-bottom: 0px;
    height: auto;
    text-decoration: none;
-   color: black;
+   color: #808080;
    overflow: hidden;
-   background-color: #fafafa;
-   border-bottom: 1px solid #fafafa; 
+   background-color: white;
    text-align: center;
 }
 .jibia-search-element:hover{
-   background-color:#eee;
-} 
+   background-color: var(--hover-color);
+   border-radius: .5em;
+}
 .jibia-term-element{
-   padding-top: 2px;
-   padding-bottom: 2px;
+   padding: 2px;
+   display: flex;
 }
 
+li.jibia-search-element:last-child {
+    border-bottom: none;
+}
 
 /*CSS FOR Products */
 .jibia-product-title{
@@ -97,21 +152,30 @@
    padding: 2px;
    text-align: center;
    position: relative;
-   background-color: #fafafa;
 }
 .jibia-product-link{
    text-decoration: none;
-   color: black !important;
+   color: #808080 !important;
    margin: 0px !important;
    padding: 0px !important;
    display: flex !important;
-   align-items: center;
-   background-color: #fafafa !important;
+   justify-content:  left;
+   text-align: left;
+   flex-direction: column;
+}
+.jibia-product-link i{
+  margin-left: .8em;
 }
 .jibia-product-image{
    position: relative;
    width: 50px;
    padding: 2px;
+   border-radius: .5em;
+}
+
+.jibia-product-element{
+  border-bottom: 1px solid #f6f6f6;
+  display: flex;
 }
 
 /*CSS FOR TERM */
@@ -128,9 +192,8 @@
 .jibia-term-link{
    position: relative;
    text-decoration: none;
-   color:black !important;
+   color:#808080 !important;
    text-align: left;
-   background-color: #fafafa !important;
    margin: 0;
    padding: 2px;
 }
@@ -143,19 +206,22 @@
    padding: 2px;
    text-align: center;
    position: relative;
-   background-color: #fafafa;
 }
 .jibia-category-link{
    text-decoration: none;
-   color: black !important;
+   color: #808080 !important;
    margin: 0px !important;
    padding: 0px !important;
    display: flex !important;
    align-items: center;
-   background-color: #fafafa !important;
 }
 .jibia-category-image{
    position: relative;
    width: 50px;
    padding: 2px;
+   border-radius: .5em;
+}
+
+.jibia-category-element{
+  border-bottom: 1px solid #f6f6f6;
 }
