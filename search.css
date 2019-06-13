@@ -1,6 +1,6 @@
 .popup{
    position: fixed;
-   top: 15vh;
+   top: 10vh;
    width: 50vw;
    left: 25vw;
    height: 600px;
@@ -80,6 +80,8 @@
   border-radius: 1em;
   background: white;
   height: fit-content;
+  overflow-y: scroll;
+  max-height: 65vh;
   padding: 1em;
    -webkit-box-shadow: 2px 3px 10px #D1D1D1;;
    -moz-box-shadow: 2px 3px 10px #D1D1D1;;
