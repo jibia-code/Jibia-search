@@ -109,7 +109,7 @@ function reloadresults(auto_data){
   var autoCompleteBox = document.getElementById("data");
 	autoCompleteBox.innerHTML = "";
 	//var temp_dict = [{"category" : {name : "citroenen", img_url : "https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg",  }}];
-	var auto_data = {
+	/*var auto_data = {
 		"ref": "https://www.graceisgreen.com/vrouw/",
 		"result": {
 		  "products": [
@@ -164,7 +164,7 @@ function reloadresults(auto_data){
 			}
 		  ]
 		}
-	  }
+	  }*/
 	autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"], auto_data["result"]["category"]));
 }
 
@@ -197,8 +197,10 @@ function sendSearchApi(value, callback=undefined, id){
 
 function search(event){
 	let searchunit = document.getElementById("searchunit");
-	reloadresults('');
-	//sendSearchApi(event.srcElement.value, reloadresults, searchunit )
+	//reloadresults('');
+	if(event.srcElement.value != ''){
+		sendSearchApi(event.srcElement.value, reloadresults, searchunit )
+	}
 }
 
 function popup(event) {
