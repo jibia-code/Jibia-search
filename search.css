@@ -20,6 +20,7 @@
       max-height: 90vh;
    }
 }
+
 @media (max-width: 900px){
    .popup{
       width: 80vw;
@@ -28,7 +29,17 @@
       max-height: 90vh;
    }
 }
+
+@media (min-width: 600px){
+  .jibia-product-title{
+    text-align: left;
+  }
+}
+
 @media (max-width: 600px){
+  .jibia-product-title{
+    text-align: center;
+  }
    .popup{
       width: 90%;
       margin: 5vw;
@@ -62,7 +73,7 @@
    font-size: inherit;
    font-family: inherit;
    width: 100%;
-   height: 2em;
+   height: 40px;
    padding: 10px;
 }
 
@@ -117,7 +128,7 @@
 
 .jibia-search-box>p{
   color: #a7a7a7;
-  font-size: 1rem;
+  font-size: .7rem;
 }
 
 
@@ -132,10 +143,13 @@
    background-color: white;
    text-align: center;
 }
+
 .jibia-search-element:hover{
-   background-color: var(--hover-color);
+   background-color: #eee;
    border-radius: .5em;
 }
+
+
 .jibia-term-element{
    padding: 2px;
    display: flex;
@@ -150,7 +164,6 @@ li.jibia-search-element:last-child {
    margin: 0;
    margin-left: 10px;
    padding: 2px;
-   text-align: center;
    position: relative;
 }
 .jibia-product-link{
@@ -162,7 +175,14 @@ li.jibia-search-element:last-child {
    justify-content:  left;
    text-align: left;
    flex-direction: column;
+   height: 100%;
 }
+
+.jibia-product-wrapper{
+  width: 100%;
+}
+
+
 .jibia-product-link i{
   margin-left: .8em;
 }
@@ -196,7 +216,11 @@ li.jibia-search-element:last-child {
    text-align: left;
    margin: 0;
    padding: 2px;
+   width: 100%;
+   height: 100%;
 }
+
+
 
 /*CSS FOR CATEGORIES */
 
@@ -214,6 +238,8 @@ li.jibia-search-element:last-child {
    padding: 0px !important;
    display: flex !important;
    align-items: center;
+   width: 100%;
+   height: 100%;
 }
 .jibia-category-image{
    position: relative;
