@@ -61,7 +61,7 @@ function add_products(productsarray, list){
 		let prod = name["product"]
 		//let productCategory = createSubtitle("Babyspullen") //Deze is nog hardcoded
 		item.className += "jibia-search-element jibia-product-element";
-		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'jibia-product-link'><img class = 'jibia-product-image' src ='" + prod["img_url"] + "'>"+ "<div> <i>" +"</i> <p class = 'jibia-product-title'>" + prod["name"] + "</p></a></div>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
+		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'jibia-product-link'><img class = 'jibia-product-image' src ='" + prod["img_url"] + "'>"+ "<div class= 'product'> <i>" +"</i> <p class = 'jibia-product-title'>" + prod["name"] + "</p></a></div>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
 		item.addEventListener("click", function() {
 			var req = new XMLHttpRequeswet();
 			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
