@@ -6,6 +6,8 @@ var num_cat = document.currentScript.getAttribute('#category');
 var num_prod = document.currentScript.getAttribute('#products');
 var num_term = document.currentScript.getAttribute('#terms');
 var lang = document.currentScript.getAttribute('lang');
+var clickedbar = ''
+
 
 function createTitle(string) {
   let titleElement = document.createElement("p")
@@ -97,6 +99,12 @@ function makeUL(productsarray,termsarray, categoryarray) {
     return list;
 }
 
+function lightspeedSearch(word){
+	url = 'https://' +  window.location.hostname + '/search/' + word;
+	document.location = url;
+}
+
+
 function reloadresults(auto_data){
   var autoCompleteBox = document.getElementById("data");
 	autoCompleteBox.innerHTML = "";
@@ -156,8 +164,7 @@ function reloadresults(auto_data){
 			}
 		  ]
 		}
-	  }
-	  */
+	  }*/
 	autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"], auto_data["result"]["category"]));
 }
 
@@ -191,12 +198,15 @@ function sendSearchApi(value, callback=undefined, id){
 function search(event){
 	let searchunit = document.getElementById("searchunit");
 	//reloadresults('');
-	sendSearchApi(event.srcElement.value, reloadresults, searchunit )
+	if(event.srcElement.value != ''){
+		sendSearchApi(event.srcElement.value, reloadresults, searchunit )
+	}
 }
 
 function popup(event) {
 	document.getElementById('searchunit').style.display = 'block';
 	let inputfield = document.getElementById('searchbox');
+	clickedbar = event.srcElement;
 	inputfield.value = event.srcElement.value;
 	inputfield.focus();
 	//inputfield.select();
@@ -204,26 +214,32 @@ function popup(event) {
 }
 
 function closewindow(searchbars){
+	if(searchunit.style.display != 'none'){
 	searchunit.style.display = 'none';
-			searchbars.forEach(function(e){
-				e.value = '';
-				if(e.getAttribute("searchbar") == searchunit.getAttribute('s'))
-				{
-					e.focus();
-				}
-			});
+	clickedbar.value = '';
+	clickedbar.focus();
+	}
 };
 
 function addbackspaceclose(searchbars, searchunit){
-	document.addEventListener("keyup", function(e){
+	searchunit.addEventListener("keyup", function(e){
 		var temp = document.getElementById("searchbox").value;
 		if(e.keyCode == 8 && temp == ''){
 			closewindow(searchbars, searchunit);
 		}
 	});
 }
-function addevent(){
 
+function addEnterSearch(searchunit){
+	searchunit.addEventListener("keyup", function(e){
+		var temp = document.getElementById("searchbox").value;
+		if(e.keyCode == 13 && temp != ''){
+			lightspeedSearch(temp);
+		}
+	});
+}
+
+function addevent(){
 	let searchbars = document.getElementsByName('q');
 	let searchunit = document.createElement('div');
 	document.onclick = function(e){
@@ -240,6 +256,7 @@ function addevent(){
 		e.setAttribute("searchbar", i);
 		document.body.appendChild(searchunit);
 		e.addEventListener("input", popup);
+		e.addEventListener("click", popup);
 		i = i + 1;
 	});
 	searchunit.addEventListener("input", search);
@@ -249,4 +266,5 @@ function addevent(){
 
 	//kiezen of we met of zonder backspace delete willen!
 	addbackspaceclose(searchbars, searchunit);
+	addEnterSearch(searchunit);
 }
