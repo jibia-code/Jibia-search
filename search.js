@@ -28,7 +28,7 @@ function add_category(categoryarray, list){
 		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + cate["name"] + '.html' + "' class = 'jibia-category-link'><img class = 'jibia-category-image' src ='" + cate["img_url"] + "'><p class = 'jibia-category-title'>" + cate["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
 		item.addEventListener("click", function() {
 			var req = new XMLHttpRequest();
-			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
+			req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
 			req.setRequestHeader("Content-type", "application/json");
 			var data = JSON.stringify({"origin":window.location,"query": name});
 			req.send(data);
@@ -45,7 +45,7 @@ function add_terms(termsarray, list){
         item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term['raw_word']  + '\' class = \'jibia-term-link\'><p class = \'jibia-term-title\'>' + term["html_word"] + '</p></a>'
 		  item.addEventListener("click", function() {
 			var req = new XMLHttpRequest();
-			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
+			req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
 			req.setRequestHeader("Content-type", "application/json");
 			var data = JSON.stringify({"origin":window.location,"query": term});
 			req.send(data)
@@ -64,7 +64,7 @@ function add_products(productsarray, list){
 		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'jibia-product-link'><img class = 'jibia-product-image' src ='" + prod["img_url"] + "'>"+ "<div class= 'product'> <i>" +"</i> <p class = 'jibia-product-title'>" + prod["name"] + "</p></a></div>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
 		item.addEventListener("click", function() {
 			var req = new XMLHttpRequeswet();
-			req.open('POST', decodeURIComponent('https://api.jibia.nl/api/search_app_click_analytics'), true);
+			req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
 			req.setRequestHeader("Content-type", "application/json");
 			var data = JSON.stringify({"origin":window.location,"query": name});
 			req.send(data);
@@ -180,7 +180,7 @@ function sendSearchApi(value, callback=undefined, id){
 	if(lang == null){
 		lang = window.location.pathname.split( '/' )[1];
 	}
-    req.open('GET', decodeURIComponent('https://api.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+"&country_code="+lang, true));
+    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+"&country_code="+lang, true));
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
             var json = JSON.parse(req.responseText);
