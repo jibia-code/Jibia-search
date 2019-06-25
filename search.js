@@ -176,9 +176,11 @@ function sendSearchApi(value, callback=undefined, id){
     var req = new XMLHttpRequest();
     let token = AuthToken
     let numberResponse = 5;
-	let lang = "en";
 	if(lang == null){
 		lang = window.location.pathname.split( '/' )[1];
+	}
+	else {
+		lang = 'en'
 	}
     req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+"&country_code="+lang, true));
     req.addEventListener("readystatechange", function () {
