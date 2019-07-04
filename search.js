@@ -6,7 +6,7 @@ var num_cat = document.currentScript.getAttribute('#category');
 var num_prod = document.currentScript.getAttribute('#products');
 var num_term = document.currentScript.getAttribute('#terms');
 var attr_lang = document.currentScript.getAttribute('lang');
-
+var lang = 'nl'
 var clickedbar = ''
 
 
@@ -26,7 +26,7 @@ function add_category(categoryarray, list){
 		let item = document.createElement('li');
 		let cate = name["category"]
 		item.className += "jibia-search-element jibia-category-element";
-		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + cate["name"] + '.html' + "' class = 'jibia-category-link'><img class = 'jibia-category-image' src ='" + cate["img_url"] + "'><p class = 'jibia-category-title'>" + cate["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
+		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname +  '/' + lang + '/' + cate["name"] + '.html' + "' class = 'jibia-category-link'><img class = 'jibia-category-image' src ='" + cate["img_url"] + "'><p class = 'jibia-category-title'>" + cate["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
 		item.addEventListener("click", function() {
 			var req = new XMLHttpRequest();
 			req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
@@ -43,7 +43,7 @@ function add_terms(termsarray, list){
     termsarray.map(function(term){
         let item = document.createElement('li');
         item.className += 'jibia-search-element jibia-term-element';
-        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname + '/search/' + term['raw_word']  + '\' class = \'jibia-term-link\'><p class = \'jibia-term-title\'>' + term["html_word"] + '</p></a>'
+        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname  + '/' + lang + '/search/' + term['raw_word']  + '\' class = \'jibia-term-link\'><p class = \'jibia-term-title\'>' + term["html_word"] + '</p></a>'
 		  item.addEventListener("click", function() {
 			var req = new XMLHttpRequest();
 			req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
@@ -62,7 +62,7 @@ function add_products(productsarray, list){
 		let prod = name["product"]
 		//let productCategory = createSubtitle("Babyspullen") //Deze is nog hardcoded
 		item.className += "jibia-search-element jibia-product-element";
-		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + prod["url"] + '.html' + "' class = 'jibia-product-link'><img class = 'jibia-product-image' src ='" + prod["img_url"] + "'>"+ "<div class= 'product'> <i>" +"</i> <p class = 'jibia-product-title'>" + prod["name"] + "</p></a></div>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
+		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + lang + '/' + prod["url"] + '.html' + "' class = 'jibia-product-link'><img class = 'jibia-product-image' src ='" + prod["img_url"] + "'>"+ "<div class= 'product'> <i>" +"</i> <p class = 'jibia-product-title'>" + prod["name"] + "</p></a></div>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
 		item.addEventListener("click", function() {
 			var req = new XMLHttpRequeswet();
 			req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
@@ -177,7 +177,7 @@ function sendSearchApi(value, callback=undefined, id){
     var req = new XMLHttpRequest();
     let token = AuthToken
 	let numberResponse = 5;
-	var lang = attr_lang
+	lang = attr_lang
 	if (lang == null){
 		try {lang = window.location.pathname.split( '/' )[1];}
 		catch(error){
