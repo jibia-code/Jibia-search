@@ -1,102 +1,104 @@
-
-.popup{
-   position: fixed;
-   top: 5vh;
-   width: 50vw;
-   left: 25vw;
-   min-height: 30vw;
-   height: 72vh;
-   border-radius: 10px;
-   display: none;
-   z-index: 999999;
-   font-family:inherit;
+.popup {
+  position: fixed;
+  top: 5vh;
+  width: 50vw;
+  left: 25vw;
+  min-height: 30vw;
+  height: 72vh;
+  border-radius: 10px;
+  display: none;
+  z-index: 999999;
+  font-family: inherit;
 }
 
-@media (max-width: 1200px){
-   .popup{
-      width: 74vw;
-      left: 13vw;
-      top:5vh;
-      max-height: 90vh;
-   }
+@media (max-width: 1200px) {
+  .popup {
+    width: 74vw;
+    left: 13vw;
+    top: 5vh;
+    max-height: 90vh;
+  }
 }
 
-@media (max-width: 900px){
-   .popup{
-      width: 80vw;
-      left: 10vw;
-      top:5vh;
-      max-height: 90vh;
-   }
+@media (max-width: 900px) {
+  .popup {
+    width: 80vw;
+    left: 10vw;
+    top: 5vh;
+    max-height: 90vh;
+  }
 }
 
-@media (min-width: 600px){
-  .jibia-product-title{
+@media (min-width: 600px) {
+  .jibia-product-title {
     text-align: left;
   }
 }
 
-@media (max-width: 600px){
-  .jibia-product-title{
+@media (max-width: 600px) {
+  .jibia-product-title {
     text-align: center;
   }
-   .popup{
-      width: 90%;
-      margin: 5vw;
-      left: 0;
-      right: 0;
-      top:5vh;
-      max-height: 90vh;
-   }
+  .popup {
+    width: 90%;
+    margin: 5vw;
+    left: 0;
+    right: 0;
+    top: 5vh;
+    max-height: 90vh;
+  }
 }
 
-.center-box{
+.center-box {
   width: 100%;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.center-box i{
+.center-box i {
   position: absolute;
   z-index: 1;
   right: 1em;
-  color:#808080;
-}
-.searchbox{
   color: #808080;
-   border: none;
-   box-shadow: 2px 3px 10px #D1D1D1;
-   border-radius: 1em;
-   background-color: #fff;
-   position: relative;
-   font-size: inherit;
-   font-family: inherit;
-   width: 100%;
-   height: 40px;
-   padding: 10px;
+}
+.searchbox {
+  color: #808080;
+  border: none;
+  -webkit-box-shadow: 2px 2px 5px #d1d1d1;
+  -moz-box-shadow: 2px 2px 5px #d1d1d1;
+  box-shadow: 2px 2px 5px #d1d1d1;
+  border-radius: 1em;
+  background-color: #fff;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  width: 100%;
+  height: 40px;
+  padding: 10px;
 }
 
-.searchbox:focus, input:focus,*:focus {
-   outline: none;
+.searchbox:focus,
+input:focus,
+*:focus {
+  outline: none;
 }
 
-.searchicon{
+.searchicon {
   padding: 10px;
   min-width: 10px;
 }
 
-
-.jibia-search-box::-webkit-scrollbar{
+.jibia-search-box::-webkit-scrollbar {
   width: 7px;
 }
 
 .jibia-search-box::-webkit-scrollbar-track {
-  background-color:  white;
+  background-color: white;
 }
 
 .jibia-search-box::-webkit-scrollbar-thumb {
-  background-color: #D1D1D1;
+  background-color: #d1d1d1;
   border-radius: 5px;
 }
 .jibia-search-box::-webkit-scrollbar-thumb:hover {
@@ -111,7 +113,7 @@
   margin-block-start: 0;
   margin-block-end: 0;
   height: fit-content;
-  max-height: 65vh
+  max-height: 65vh;
 }
 
 #data {
@@ -121,133 +123,128 @@
   background: white;
 
   overflow: hidden;
-   -webkit-box-shadow: 2px 3px 10px #D1D1D1;;
-   -moz-box-shadow: 2px 3px 10px #D1D1D1;;
-   box-shadow: 2px 3px 10px #D1D1D1;
+  -webkit-box-shadow: 2px 2px 5px #d1d1d1;
+  -moz-box-shadow: 2px 2px 5px #d1d1d1;
+  box-shadow: 2px 2px 5px #d1d1d1;
 }
 
-.jibia-search-box>p{
+.jibia-search-box > p {
   color: #a7a7a7;
-  font-size: .7rem;
+  font-size: 0.7rem;
 }
 
-
-.jibia-search-element{
-   padding: 5px;
-   margin: .5em;
-   margin-bottom: 0px;
-   height: auto;
-   text-decoration: none;
-   color: #808080;
-   overflow: hidden;
-   background-color: white;
-   text-align: center;
+.jibia-search-element {
+  padding: 5px;
+  margin: 0.5em;
+  margin-bottom: 0px;
+  height: auto;
+  text-decoration: none;
+  color: #808080;
+  overflow: hidden;
+  background-color: white;
+  text-align: center;
 }
 
-.jibia-search-element:hover{
-   background-color: #eee;
-   border-radius: .5em;
+.jibia-search-element:hover {
+  background-color: #eee;
+  border-radius: 0.5em;
 }
 
-
-.jibia-term-element{
-   padding: 2px;
-   display: flex;
+.jibia-term-element {
+  padding: 2px;
+  display: flex;
 }
 
 li.jibia-search-element:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 /*CSS FOR Products */
-.jibia-product-title{
-   margin: 0;
-   margin-left: 10px;
-   padding: 2px;
-   position: relative;
+.jibia-product-title {
+  margin: 0;
+  margin-left: 10px;
+  padding: 2px;
+  position: relative;
 }
-.jibia-product-link{
-   text-decoration: none;
-   color: #808080 !important;
-   margin: 0px !important;
-   padding: 0px !important;
-   display: flex !important;
-   justify-content:  left;
-   text-align: left;
-   flex-direction: column;
-   height: 100%;
+.jibia-product-link {
+  text-decoration: none;
+  color: #808080 !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  display: flex !important;
+  justify-content: left;
+  text-align: left;
+  flex-direction: column;
+  height: 100%;
 }
 
-.jibia-product-wrapper{
+.jibia-product-wrapper {
   width: 100%;
 }
 
-
-.jibia-product-link i{
-  margin-left: .8em;
+.jibia-product-link i {
+  margin-left: 0.8em;
 }
-.jibia-product-image{
-   position: relative;
-   width: 50px;
-   padding: 2px;
-   border-radius: .5em;
+.jibia-product-image {
+  position: relative;
+  width: 50px;
+  padding: 2px;
+  border-radius: 0.5em;
 }
 
-.jibia-product-element{
+.jibia-product-element {
   border-bottom: 1px solid #f6f6f6;
   display: flex;
 }
 
 /*CSS FOR TERM */
-.jibia-term-title{
-   position: relative;
-   text-align: left;
-   margin: 0;
-   padding: 2px;
+.jibia-term-title {
+  position: relative;
+  text-align: left;
+  margin: 0;
+  padding: 2px;
 }
-.jibia-term-title b{
-   font-weight: bold !important;
-}
-
-.jibia-term-link{
-   position: relative;
-   text-decoration: none;
-   color:#808080 !important;
-   text-align: left;
-   margin: 0;
-   padding: 2px;
-   width: 100%;
-   height: 100%;
+.jibia-term-title b {
+  font-weight: bold !important;
 }
 
-
+.jibia-term-link {
+  position: relative;
+  text-decoration: none;
+  color: #808080 !important;
+  text-align: left;
+  margin: 0;
+  padding: 2px;
+  width: 100%;
+  height: 100%;
+}
 
 /*CSS FOR CATEGORIES */
 
-.jibia-category-title{
-   margin: 0;
-   margin-left: 10px;
-   padding: 2px;
-   text-align: center;
-   position: relative;
+.jibia-category-title {
+  margin: 0;
+  margin-left: 10px;
+  padding: 2px;
+  text-align: center;
+  position: relative;
 }
-.jibia-category-link{
-   text-decoration: none;
-   color: #808080 !important;
-   margin: 0px !important;
-   padding: 0px !important;
-   display: flex !important;
-   align-items: center;
-   width: 100%;
-   height: 100%;
+.jibia-category-link {
+  text-decoration: none;
+  color: #808080 !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  display: flex !important;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
-.jibia-category-image{
-   position: relative;
-   width: 50px;
-   padding: 2px;
-   border-radius: .5em;
+.jibia-category-image {
+  position: relative;
+  width: 50px;
+  padding: 2px;
+  border-radius: 0.5em;
 }
 
-.jibia-category-element{
+.jibia-category-element {
   border-bottom: 1px solid #f6f6f6;
 }
