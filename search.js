@@ -5,6 +5,8 @@ var ThemeCategory = 2;
 var num_cat = document.currentScript.getAttribute('#category');
 var num_prod = document.currentScript.getAttribute('#products');
 var num_term = document.currentScript.getAttribute('#terms');
+var attr_lang = document.currentScript.getAttribute('lang');
+
 var clickedbar = ''
 
 
@@ -175,13 +177,13 @@ function sendSearchApi(value, callback=undefined, id){
     var req = new XMLHttpRequest();
     let token = AuthToken
 	let numberResponse = 5;
-	let lang = document.currentScript.getAttribute('lang');
-	try{
-		lang = window.location.pathname.split( '/' )[1];
-	}
-	catch(error) {
-		console.error(error)
-		lang = 'en'
+	var lang = attr_lang
+	if (lang == null){
+		try {lang = window.location.pathname.split( '/' )[1];}
+		catch(error){
+			console.error(error)
+			lang = 'en'
+		}
 	}
     req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+"&country_code="+lang, true));
     req.addEventListener("readystatechange", function () {
