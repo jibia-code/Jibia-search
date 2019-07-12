@@ -131,7 +131,7 @@ function sendSearchApi(value, callback=undefined, id){
 		try {lang = window.location.pathname.split( '/' )[1];}
 		catch(error){
 			console.error(error)
-			lang = 'en'
+			lang = 'nl'
 		}
 	}
     req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+"&country_code="+lang, true));
