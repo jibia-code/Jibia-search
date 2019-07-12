@@ -21,7 +21,7 @@ function createSubtitle(string) {
   subtitleElement.innerHTML = string;
   return subtitleElement;
 }
-function add_category(categoryarray, list){
+function add_category(categoryarray, list, lang){
 	categoryarray.map(function(name){
 		let item = document.createElement('li');
 		let cate = name["category"]
@@ -39,7 +39,7 @@ function add_category(categoryarray, list){
 		return list
 }
 
-function add_terms(termsarray, list){
+function add_terms(termsarray, list, lang){
     termsarray.map(function(term){
         let item = document.createElement('li');
         item.className += 'jibia-search-element jibia-term-element';
@@ -56,7 +56,7 @@ function add_terms(termsarray, list){
 	return list
 }
 
-function add_products(productsarray, list){
+function add_products(productsarray, list, lang){
 	productsarray.map(function(name){
 		let item = document.createElement('li');
 		let prod = name["product"]
@@ -76,25 +76,32 @@ function add_products(productsarray, list){
 }
 
 function makeUL(productsarray,termsarray, categoryarray) {
+	try {
+		lang = window.location.pathname.split( '/' )[1];
+	}
+	catch(error){
+		console.error(error)
+		lang = 'nl'
+	}
     var list = document.createElement('ul');
     list.className += "jibia-search-box";
 	list.id += "jibia-autocomplete"
 	if(termsarray != undefined){
 		let termTitle = createTitle("Zoektermen")
 		list.appendChild(termTitle);
-		var t = add_terms(termsarray,list);
+		var t = add_terms(termsarray,list,lang);
 		list = t
 	}
 	if(productsarray != undefined){
 		let productTitle = createTitle("Artikelen")
 		list.appendChild(productTitle);
-		var t = add_products(productsarray,list);
+		var t = add_products(productsarray,list,lang);
 		list = t
 	}
 	if(categoryarray != undefined){
 		let categoryTitle = createTitle("Categoriën")
 		list.appendChild(categoryTitle);
-		var t = add_category(categoryarray,list);
+		var t = add_category(categoryarray,list,lang);
 		list = t
 	}
     return list;
@@ -105,67 +112,9 @@ function lightspeedSearch(word){
 	document.location = url;
 }
 
-
 function reloadresults(auto_data){
   var autoCompleteBox = document.getElementById("data");
 	autoCompleteBox.innerHTML = "";
-	//var temp_dict = [{"category" : {name : "citroenen", img_url : "https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg",  }}];
-	/*var auto_data = {
-		"ref": "https://www.graceisgreen.com/vrouw/",
-		"result": {
-		  "products": [
-			{
-			  "product": {
-				"img_url": "https://cdn.webshopapp.com/shops/235598/files/228879149/50x50x2/bambooty-basics-wetbag---alle-kleuren.jpg",
-				"name": "Bambooty Basics Wetbag in verschillende kleuren",
-				"url": "bambooty-basics-wetbag"
-			  }
-			},
-			{
-			  "product": {
-				"img_url": "https://cdn.webshopapp.com/shops/235598/files/251267771/50x50x2/inlegger-klein-3-2.jpg",
-				"name": "Bambooty inlegger voor in de wasbare luier - 2 varianten.",
-				"url": "bamboo-inlegger"
-			  }
-			},
-			{
-			  "product": {
-				"img_url": "https://cdn.webshopapp.com/shops/235598/files/211176899/50x50x2/bambooty-zoogcompressen-zakje.jpg",
-				"name": "Booby wasbare zoogcompressen dag",
-				"url": "booby-wasbare-zoogcompressen-dag"
-			  }
-			},
-			{
-			  "product": {
-				"img_url": "https://cdn.webshopapp.com/shops/235598/files/211177382/50x50x2/zoogcompressen-nacht-wasbaar.jpg",
-				"name": "Booby wasbare zoogcompressen nacht",
-				"url": "booby-wasbare-zoogcompressen-nacht"
-			  }
-			},
-			{
-			  "product": {
-				"img_url": "https://cdn.webshopapp.com/shops/235598/files/263034773/50x50x2/swim-and-training-whale-hq.png",
-				"name": "Actie! Zwemluier & Trainingsbroekje Bubble - 2-pak  ",
-				"url": "zwemluier-trainingsbroekje-bubble"
-			  }
-			}
-		  ],
-		  "words": [
-			{
-			  "html_word": "<b>B</b>orstvoeding",
-			  "raw_word": "Borstvoeding"
-			},
-			{
-			  "html_word": "<b>B</b>escherming",
-			  "raw_word": "Bescherming"
-			},
-			{
-			  "html_word": "<b>B</b>abydoekjes",
-			  "raw_word": "Babydoekjes"
-			}
-		  ]
-		}
-	  }*/
 	autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"], auto_data["result"]["category"]));
 }
 
