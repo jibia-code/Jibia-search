@@ -7,6 +7,7 @@ var num_prod = document.currentScript.getAttribute('#products');
 var num_term = document.currentScript.getAttribute('#terms');
 var attr_lang = document.currentScript.getAttribute('lang');
 var lang = 'nl'
+var default_lang = 'nl'
 var clickedbar = ''
 
 
@@ -76,13 +77,7 @@ function add_products(productsarray, list, lang){
 }
 
 function makeUL(productsarray,termsarray, categoryarray) {
-	try {
-		lang = window.location.pathname.split( '/' )[1];
-	}
-	catch(error){
-		console.error(error)
-		lang = 'nl'
-	}
+	lang = getcountry(attr_lang);
     var list = document.createElement('ul');
     list.className += "jibia-search-box";
 	list.id += "jibia-autocomplete"
@@ -122,18 +117,29 @@ function updateJSON(json) {
     latest_search_results = json
 }
 
+function getcountry(lang){
+	lang = attr_lang
+	if (lang == null){
+		try {
+			let temp = window.location.pathname.split( '/' )[1];
+			if (temp.length == 2){
+				lang = temp
+			}
+			else lang = default_lang
+		}
+		catch(error){
+			console.error(error)
+			lang = default_lang
+		}
+	}
+	return lang
+}
+
 function sendSearchApi(value, callback=undefined, id){
     var req = new XMLHttpRequest();
     let token = AuthToken
 	let numberResponse = 5;
-	lang = attr_lang
-	if (lang == null){
-		try {lang = window.location.pathname.split( '/' )[1];}
-		catch(error){
-			console.error(error)
-			lang = 'nl'
-		}
-	}
+	lang = getcountry(attr_lang);
     req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+"&country_code="+lang, true));
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
