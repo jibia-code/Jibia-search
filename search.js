@@ -32,7 +32,7 @@ function add_category(categoryarray, list, lang){
 			var req = new XMLHttpRequest();
 			req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
 			req.setRequestHeader("Content-type", "application/json");
-			var data = JSON.stringify({"origin":window.location,"query": name});
+			var data = JSON.stringify({"origin":window.location,"query": name, "token": AuthToken});
 			req.send(data);
 		});
 		list.appendChild(item)
