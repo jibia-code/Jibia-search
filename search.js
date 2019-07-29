@@ -13,8 +13,7 @@ var clickedbar = ''
 
 var configData = {
 	settings: {
-		token: AuthToken,
-		default_lang: 'en' 
+		default_language: 'en' 
 	},
 	theme: {
 		num_cat: '1',
@@ -26,16 +25,14 @@ var configData = {
 
 function init() {
 	var req = new XMLHttpRequest();
-    let token = AuthToken
 	lang = getcountry(attr_lang);
-    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/get_search_config'+'&token='+token , true));
+    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/get_search_configuration'+'&token='+AuthToken , true));
     req.addEventListener("readystatechange", function () {
-    
+		console.log(req) // HIER GEBEURT NOG NIKS MEE
+		json = JSON(req.reponse); 
     });
     req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     req.send();
-	//TODO: default settings
-	// API request
 } 
 // ------------ CREATE RESULT OF SEARCH ------ 
 function createTitle(string) {
@@ -163,10 +160,9 @@ function getcountry(lang){
 
 function sendSearchApi(value, callback=undefined, id){
     var req = new XMLHttpRequest();
-    let token = configData.settings.token
 	let numberResponse = configData.theme.num_prod;
 	lang = getcountry(attr_lang);
-    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+"&country_code="+lang, true));
+    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/do_search?query='+value+'&token='+AuthToken+'&n='+numberResponse+"&country_code="+lang, true));
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
             var json = JSON.parse(req.responseText);
