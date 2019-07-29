@@ -1,4 +1,5 @@
-window.onload = addevent;
+window.onload = onLoad;
+
 var AuthToken = document.currentScript.getAttribute('token');
 //var ThemeCategory = document.currentScript.getAttribute('theme_category');
 var ThemeCategory = 2;
@@ -10,13 +11,24 @@ var lang = 'nl'
 var default_lang = 'nl'
 var clickedbar = ''
 
+var configData = {
+	settings: {
+		token: AuthToken,
+		default_lang: 'en' 
+	},
+	theme: {
+		num_cat: '1',
+		num_prod: '5',
+		num_term: '3',
+		bg_color: '',
+	}
+}
 
 function init() {
 	var req = new XMLHttpRequest();
     let token = AuthToken
-	let numberResponse = 5;
 	lang = getcountry(attr_lang);
-    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/get_config'+'&token='+token , true));
+    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/get_search_config'+'&token='+token , true));
     req.addEventListener("readystatechange", function () {
     
     });
@@ -25,7 +37,7 @@ function init() {
 	//TODO: default settings
 	// API request
 } 
-
+// ------------ CREATE RESULT OF SEARCH ------ 
 function createTitle(string) {
   let titleElement = document.createElement("p")
   titleElement.innerHTML = string;
@@ -37,6 +49,7 @@ function createSubtitle(string) {
   subtitleElement.innerHTML = string;
   return subtitleElement;
 }
+
 function add_category(categoryarray, list, lang){
 	categoryarray.map(function(name){
 		let item = document.createElement('li');
@@ -128,10 +141,6 @@ function reloadresults(auto_data){
 	autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"], auto_data["result"]["category"]));
 }
 
-function updateJSON(json) {
-    latest_search_results = json
-}
-
 function getcountry(lang){
 	lang = attr_lang
 	if (lang == null){
@@ -140,20 +149,22 @@ function getcountry(lang){
 			if (temp.length == 2){
 				lang = temp
 			} 
-			else lang = default_lang
+			else lang = configData.settings.default_lang
 		}
 		catch(error){
 			console.error(error)
-			lang = default_lang
+			lang = configData.settings.default_lang
 		}
 	}
 	return lang
 }
 
+//---------- DO SEARCH -------- 
+
 function sendSearchApi(value, callback=undefined, id){
     var req = new XMLHttpRequest();
-    let token = AuthToken
-	let numberResponse = 5;
+    let token = configData.settings.token
+	let numberResponse = configData.theme.num_prod;
 	lang = getcountry(attr_lang);
     req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+"&country_code="+lang, true));
     req.addEventListener("readystatechange", function () {
@@ -178,6 +189,8 @@ function search(event){
 	}
 }
 
+
+// ------- POPUP  --------
 function popup(event) {
 	document.getElementById('searchunit').style.display = 'block';
 	let inputfield = document.getElementById('searchbox');
@@ -196,6 +209,7 @@ function closewindow(searchbars){
 	}
 };
 
+// ------ SEARCHBAR FEATURES ------
 function addbackspaceclose(searchbars, searchunit){
 	searchunit.addEventListener("keyup", function(e){
 		var temp = document.getElementById("searchbox").value;
@@ -214,7 +228,7 @@ function addEnterSearch(searchunit){
 	});
 }
 
-function addevent(){
+function addEvent(){
 	let searchbars = document.getElementsByName('q');
 	let searchunit = document.createElement('div');
 	document.onclick = function(e){
@@ -242,4 +256,10 @@ function addevent(){
 	//kiezen of we met of zonder backspace delete willen!
 	addbackspaceclose(searchbars, searchunit);
 	addEnterSearch(searchunit);
+}
+
+
+function onLoad(){
+	init();
+	addEvent(); 
 }
