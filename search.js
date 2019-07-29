@@ -11,6 +11,21 @@ var default_lang = 'nl'
 var clickedbar = ''
 
 
+function init() {
+	var req = new XMLHttpRequest();
+    let token = AuthToken
+	let numberResponse = 5;
+	lang = getcountry(attr_lang);
+    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/get_config'+'&token='+token , true));
+    req.addEventListener("readystatechange", function () {
+    
+    });
+    req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    req.send();
+	//TODO: default settings
+	// API request
+} 
+
 function createTitle(string) {
   let titleElement = document.createElement("p")
   titleElement.innerHTML = string;
@@ -124,7 +139,7 @@ function getcountry(lang){
 			let temp = window.location.pathname.split( '/' )[1];
 			if (temp.length == 2){
 				lang = temp
-			}
+			} 
 			else lang = default_lang
 		}
 		catch(error){
