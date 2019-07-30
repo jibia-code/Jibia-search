@@ -3,12 +3,12 @@ window.onload = onLoad;
 var AuthToken = document.currentScript.getAttribute('token');
 //var ThemeCategory = document.currentScript.getAttribute('theme_category');
 var ThemeCategory = 2;
+var default_lang = document.currentScript.getAttribute('default_lang');
 var num_cat = document.currentScript.getAttribute('#category');
 var num_prod = document.currentScript.getAttribute('#products');
 var num_term = document.currentScript.getAttribute('#terms');
-var attr_lang = document.currentScript.getAttribute('lang');
-var lang = 'nl'
-var default_lang = 'nl'
+var attr_lang = default_lang;
+var lang = default_lang;
 var clickedbar = ''
 
 var configData = {
@@ -83,8 +83,8 @@ function add_terms(termsarray, lang){
     termsarray.map(function(term){
         let item = document.createElement('li');
 		item.className += 'jibia-search-element jibia-term-element';
-        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname  + '/' + lang + '/search/' + term['raw_word']  + '\' class = \'jibia-term-link\'><p class = \'jibia-term-title\'>' + term["html_word"] + '</p></a>'
-		  item.addEventListener("click", searchAppClickAnalytics)
+    item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname  + '/' + lang + '/search/' + term['raw_word']  + '\' class = \'jibia-term-link\'><p class = \'jibia-term-title\'>' + term["html_word"] + '</p></a>'
+    item.addEventListener("click", searchAppClickAnalytics)
 		list.appendChild(item)
 	});
 	return list
