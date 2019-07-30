@@ -1,4 +1,5 @@
-window.onload = addevent;
+window.onload = onLoad;
+
 var AuthToken = document.currentScript.getAttribute('token');
 //var ThemeCategory = document.currentScript.getAttribute('theme_category');
 var ThemeCategory = 2;
@@ -10,94 +11,127 @@ var attr_lang = default_lang;
 var lang = default_lang;
 var clickedbar = ''
 
+var configData = {
+	default_language: 'en',
+	sections: [
+		{
+			name: 'terms',
+			position: 1,
+			size: 3
+		},
+		{
+			name: 'products',
+			position: 2,
+			size: 5
+		},
+		{
+			name: 'category',
+			position: 3,
+			size: 12
+		}
+	]
+}
 
+function init() {
+	var req = new XMLHttpRequest();
+	lang = getcountry(attr_lang);
+    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/get_search_configuration'+'&token='+AuthToken , true));
+    req.addEventListener("readystatechange", function () {
+		console.log(req) // HIER GEBEURT NOG NIKS MEE
+		json = JSON.parse(req.reponse); 
+    });
+    req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    req.send();
+} 
+// ------------ CREATE RESULT OF SEARCH ------ 
 function createTitle(string) {
-  let titleElement = document.createElement("p")
-  titleElement.innerHTML = string;
-  return titleElement;
+	let titleElement = document.createElement("p")
+	titleElement.innerHTML = string;
+	return titleElement;
 }
 
 function createSubtitle(string) {
-  let subtitleElement = document.createElement("i")
-  subtitleElement.innerHTML = string;
-  return subtitleElement;
+	let subtitleElement = document.createElement("i")
+	subtitleElement.innerHTML = string;
+	return subtitleElement;
 }
-function add_category(categoryarray, list, lang){
+
+function searchAppClickAnalytics() {
+	var req = new XMLHttpRequeswet();
+	req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
+	req.setRequestHeader("Content-type", "application/json");
+	var data = JSON.stringify({"origin":window.location,"query": name});
+	req.send(data);
+}
+
+function add_category(categoryarray, lang){
+	let list = createTitle("Categoriën")
 	categoryarray.map(function(name){
 		let item = document.createElement('li');
 		let cate = name["category"]
 		item.className += "jibia-search-element jibia-category-element";
+
 		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname +  '/' + lang + '/' + cate["name"] + '.html' + "' class = 'jibia-category-link'><img class = 'jibia-category-image' src ='" + cate["img_url"] + "'><p class = 'jibia-category-title'>" + cate["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
-		item.addEventListener("click", function() {
-			var req = new XMLHttpRequest();
-			req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
-			req.setRequestHeader("Content-type", "application/json");
-			var data = JSON.stringify({"query": document.getElementById("searchbox").value, "click":term, "token": AuthToken});
-			req.send(data);
-		});
+		item.addEventListener("click", searchAppClickAnalytics);
 		list.appendChild(item)
 	});
 		return list
 }
 
-function add_terms(termsarray, list, lang){
+function add_terms(termsarray, lang){
+	let list = createTitle("Zoektermen");
     termsarray.map(function(term){
         let item = document.createElement('li');
-        item.className += 'jibia-search-element jibia-term-element';
-        item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname  + '/' + lang + '/search/' + term['raw_word']  + '\' class = \'jibia-term-link\'><p class = \'jibia-term-title\'>' + term["html_word"] + '</p></a>'
-		  item.addEventListener("click", function() {
-			var req = new XMLHttpRequest();
-			req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
-			req.setRequestHeader("Content-type", "application/json");
-			var data = JSON.stringify({"query": document.getElementById("searchbox").value, "click":term, "token": AuthToken});
-			req.send(data)
-		})
+		item.className += 'jibia-search-element jibia-term-element';
+    item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname  + '/' + lang + '/search/' + term['raw_word']  + '\' class = \'jibia-term-link\'><p class = \'jibia-term-title\'>' + term["html_word"] + '</p></a>'
+    item.addEventListener("click", searchAppClickAnalytics)
 		list.appendChild(item)
 	});
 	return list
 }
 
-function add_products(productsarray, list, lang){
+
+function add_products(productsarray, lang){
+	let list = createTitle("Artikelen")
+	
 	productsarray.map(function(name){
 		let item = document.createElement('li');
 		let prod = name["product"]
 		//let productCategory = createSubtitle("Babyspullen") //Deze is nog hardcoded
 		item.className += "jibia-search-element jibia-product-element";
 		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + lang + '/' + prod["url"] + '.html' + "' class = 'jibia-product-link'><img class = 'jibia-product-image' src ='" + prod["img_url"] + "'>"+ "<div class= 'product'> <i>" +"</i> <p class = 'jibia-product-title'>" + prod["name"] + "</p></a></div>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
-		item.addEventListener("click", function() {
-			var req = new XMLHttpRequeswet();
-			req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
-			req.setRequestHeader("Content-type", "application/json");
-			var data = JSON.stringify({"query": document.getElementById("searchbox").value,"click": name, "token": AuthToken});
-			req.send(data);
-		})
+		item.addEventListener("click", searchAppClickAnalytics)
 		list.appendChild(item)
 	});
 	return list
 }
 
-function makeUL(productsarray,termsarray, categoryarray) {
+
+
+function makeUL(productsarray,termsarray, categoriesarray) {
 	lang = getcountry(attr_lang);
     var list = document.createElement('ul');
     list.className += "jibia-search-box";
-	list.id += "jibia-autocomplete"
+	list.id += "jibia-autocomplete";
+	var htmls = {};
 	if(termsarray != undefined){
-		let termTitle = createTitle("Zoektermen")
-		list.appendChild(termTitle);
-		var t = add_terms(termsarray,list,lang);
-		list = t
+		htmls["terms"] = add_terms(termsarray,lang);
 	}
 	if(productsarray != undefined){
-		let productTitle = createTitle("Artikelen")
-		list.appendChild(productTitle);
-		var t = add_products(productsarray,list,lang);
-		list = t
+		htmls["products"] = add_products(productsarray,lang);
 	}
-	if(categoryarray != undefined){
-		let categoryTitle = createTitle("Categoriën")
-		list.appendChild(categoryTitle);
-		var t = add_category(categoryarray,list,lang);
-		list = t
+	if(categoriesarray != undefined){
+		htmls["categories"] = add_category(categoriesarray,lang);
+	}
+
+	for (let index = 0; index < configData.sections.length; index++) {
+		for (let sectionIndex = 0; sectionIndex < configData.sections.length; sectionIndex++) {
+			const section = configData.sections[sectionIndex];
+			if (section.position === index && section.name in htmls) {
+				list.appendChild(htmls[section.name]);
+				break;
+			}
+		}
 	}
     return list;
 }
@@ -113,10 +147,6 @@ function reloadresults(auto_data){
 	autoCompleteBox.appendChild(makeUL(auto_data["result"]["products"], auto_data["result"]["words"], auto_data["result"]["category"]));
 }
 
-function updateJSON(json) {
-    latest_search_results = json
-}
-
 function getcountry(lang){
 	lang = attr_lang
 	if (lang == null){
@@ -124,23 +154,24 @@ function getcountry(lang){
 			let temp = window.location.pathname.split( '/' )[1];
 			if (temp.length == 2){
 				lang = temp
-			}
-			else lang = default_lang
+			} 
+			else lang = configData.settings.default_lang
 		}
 		catch(error){
 			console.error(error)
-			lang = default_lang
+			lang = configData.settings.default_lang
 		}
 	}
 	return lang
 }
 
+//---------- DO SEARCH -------- 
+
 function sendSearchApi(value, callback=undefined, id){
     var req = new XMLHttpRequest();
-    let token = AuthToken
-	let numberResponse = 5;
+	let numberResponse =  '5';
 	lang = getcountry(attr_lang);
-    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/do_search?query='+value+'&token='+token+'&n='+numberResponse+"&country_code="+lang, true));
+    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/do_search?query='+value+'&token='+AuthToken+'&n='+numberResponse+"&country_code="+lang, true));
     req.addEventListener("readystatechange", function () {
         if (req.readyState === 4) {
             var json = JSON.parse(req.responseText);
@@ -163,6 +194,8 @@ function search(event){
 	}
 }
 
+
+// ------- POPUP  --------
 function popup(event) {
 	document.getElementById('searchunit').style.display = 'block';
 	let inputfield = document.getElementById('searchbox');
@@ -181,6 +214,7 @@ function closewindow(searchbars){
 	}
 };
 
+// ------ SEARCHBAR FEATURES ------
 function addbackspaceclose(searchbars, searchunit){
 	searchunit.addEventListener("keyup", function(e){
 		var temp = document.getElementById("searchbox").value;
@@ -199,7 +233,7 @@ function addEnterSearch(searchunit){
 	});
 }
 
-function addevent(){
+function addEvent(){
 	let searchbars = document.getElementsByName('q');
 	let searchunit = document.createElement('div');
 	document.onclick = function(e){
@@ -227,4 +261,10 @@ function addevent(){
 	//kiezen of we met of zonder backspace delete willen!
 	addbackspaceclose(searchbars, searchunit);
 	addEnterSearch(searchunit);
+}
+
+
+function onLoad(){
+	init();
+	addEvent(); 
 }
