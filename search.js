@@ -3,12 +3,12 @@ window.onload = onLoad;
 var AuthToken = document.currentScript.getAttribute('token');
 //var ThemeCategory = document.currentScript.getAttribute('theme_category');
 var ThemeCategory = 2;
-var default_lang = document.currentScript.getAttribute('default_lang');
+var default_language = document.currentScript.getAttribute('default_language');
 var num_cat = document.currentScript.getAttribute('#category');
 var num_prod = document.currentScript.getAttribute('#products');
 var num_term = document.currentScript.getAttribute('#terms');
-var attr_lang = default_lang;
-var lang = default_lang;
+var attr_lang = default_language;
+var lang = default_language;
 var clickedbar = ''
 
 var configData = {
@@ -155,11 +155,11 @@ function getcountry(lang){
 			if (temp.length == 2){
 				lang = temp
 			} 
-			else lang = configData.settings.default_lang
+			else lang = configData.default_language
 		}
 		catch(error){
 			console.error(error)
-			lang = configData.settings.default_lang
+			lang = configData.default_language
 		}
 	}
 	return lang
