@@ -35,7 +35,7 @@ var configData = {
 function init() {
 	var req = new XMLHttpRequest();
 	lang = getcountry(attr_lang);
-    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/get_search_configuration'+'?token='+AuthToken , true));
+    req.open('GET', decodeURIComponent('https://bapi.jibia.nl/api/get_search_configuration?search_token=' + AuthToken , true));
     req.addEventListener("readystatechange", function () {
 		console.log(req) // HIER GEBEURT NOG NIKS MEE
 		json = JSON.parse(req.reponse); 
