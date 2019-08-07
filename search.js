@@ -10,6 +10,7 @@ var num_term = document.currentScript.getAttribute('#terms');
 var attr_lang = default_language;
 var lang = default_language;
 var clickedbar = ''
+var lastSearchValue = "";
 
 var configData = {
 	default_language: 'en',
@@ -56,13 +57,18 @@ function createSubtitle(string) {
 	return subtitleElement;
 }
 
-function searchAppClickAnalytics(query) {
-	return function () {
+function searchAppClickAnalytics(clickedElementData, query) {
+	return function (event) {
+		var data = {
+			"token": AuthToken,
+			"click": clickedElementData,
+			"query": query
+		};
+		console.log("Click Event data: ", data)
 		var req = new XMLHttpRequest();
 		req.open('POST', decodeURIComponent('https://bapi.jibia.nl/api/search_app_click_analytics'), true);
 		req.setRequestHeader("Content-type", "application/json");
-		var data = JSON.stringify({"origin":window.location,"query": query});
-		req.send(data);
+		req.send(JSON.stringify(data));
 	}
 }
 
@@ -74,7 +80,7 @@ function add_category(categoryarray, lang){
 		item.className += "jibia-search-element jibia-category-element";
 
 		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname +  '/' + lang + '/' + cate["name"] + '.html' + "' class = 'jibia-category-link'><img class = 'jibia-category-image' src ='" + cate["img_url"] + "'><p class = 'jibia-category-title'>" + cate["name"] + "</p> </a>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
-		item.addEventListener("click", searchAppClickAnalytics(name));
+		item.addEventListener("click", searchAppClickAnalytics(name, lastSearchValue));
 		list.appendChild(item)
 	});
 		return list
@@ -86,7 +92,7 @@ function add_terms(termsarray, lang){
         let item = document.createElement('li');
 		item.className += 'jibia-search-element jibia-term-element';
     item.innerHTML = '<a href = \'' + 'https://' +  window.location.hostname  + '/' + lang + '/search/' + term['raw_word']  + '\' class = \'jibia-term-link\'><p class = \'jibia-term-title\'>' + term["html_word"] + '</p></a>'
-    item.addEventListener("click", searchAppClickAnalytics(term))
+    item.addEventListener("click", searchAppClickAnalytics(term, lastSearchValue))
 		list.appendChild(item)
 	});
 	return list
@@ -102,7 +108,7 @@ function add_products(productsarray, lang){
 		//let productCategory = createSubtitle("Babyspullen") //Deze is nog hardcoded
 		item.className += "jibia-search-element jibia-product-element";
 		item.innerHTML = "<a href = '" + 'https://' +  window.location.hostname + '/' + lang + '/' + prod["url"] + '.html' + "' class = 'jibia-product-link'><img class = 'jibia-product-image' src ='" + prod["img_url"] + "'>"+ "<div class= 'product'> <i>" +"</i> <p class = 'jibia-product-title'>" + prod["name"] + "</p></a></div>"//Dit zou dan al veranderd moeten zijn voor Cloudsuite
-		item.addEventListener("click", searchAppClickAnalytics(name))
+		item.addEventListener("click", searchAppClickAnalytics(name, lastSearchValue))
 		list.appendChild(item)
 	});
 	return list
@@ -190,6 +196,7 @@ function sendSearchApi(value, callback=undefined, id){
 
 function search(event){
 	let searchunit = document.getElementById("searchunit");
+	lastSearchValue = event.srcElement.value;
 	//reloadresults('');
 	if(event.srcElement.value != ''){
 		sendSearchApi(event.srcElement.value, reloadresults, searchunit )
